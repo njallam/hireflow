@@ -1,0 +1,32 @@
+AllCops:
+  TargetRubyVersion:
+    2.3
+  Exclude:
+    - Guardfile
+    - Gemfile
+    - Gemfile.lock
+    - db/schema.rb
+    - db/migrate/*
+    - db/default/*
+    - config/initializers/*
+    - config/environments/*
+    - bin/*
+    - spec/rails_helper.rb
+    - spec/spec_helper.rb
+    - config.ru
+    - Rakefile
+
+Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 100
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/HashSyntax:
+  EnforcedStyle: ruby19_no_mixed_keys

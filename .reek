@@ -1,0 +1,16 @@
+"app/controllers":
+  IrresponsibleModule:
+    enabled: false
+  NestedIterators:
+    enabled: false
+"app/helpers":
+  IrresponsibleModule:
+    enabled: false
+  UtilityFunction:
+    enabled: false
+
+IrresponsibleModule:
+  enabled: false
+
+exclude_paths:
+  - db/migrate
