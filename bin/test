@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+# TODO: Refactor into 'each'
+# TODO: Parallel (?)
+require 'English'
+
+error = false
+
+puts '=======RUBOCOP======='
+system('rubocop')
+error = true if $CHILD_STATUS.exitstatus.nonzero?
+
+puts '=========REEK========='
+system('reek')
+error = true if $CHILD_STATUS.exitstatus.nonzero?
+
+puts '=======HAML-LINT======'
+system('haml-lint')
+error = true if $CHILD_STATUS.exitstatus.nonzero?
+
+puts '===FACTORY_BOT:lint==='
+system('rake factory_bot:lint')
+error = true if $CHILD_STATUS.exitstatus.nonzero?
+
+puts '=========RAILS========'
+system('rails test')
+error = true if $CHILD_STATUS.exitstatus.nonzero?
+
+puts '======================'
+abort if error
