@@ -13,6 +13,10 @@
 !/log/.keep
 !/tmp/.keep
 
+# Ignore all graphs
+gem_graph.png
+erd.pdf
+
 # Ignore uploaded files in development
 /storage/*
 
