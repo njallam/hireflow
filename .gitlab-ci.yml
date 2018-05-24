@@ -1,0 +1,29 @@
+before_script:
+  - RAILS_ENV=test bundle install
+  - echo $MASTER_KEY > config/master.key
+
+
+rubocop:
+  script:
+    - bundle exec rubocop -R
+
+reek:
+  script:
+    - bundle exec reek
+
+haml-lint:
+  script:
+    - bundle exec haml-lint
+
+factory-lint:
+  script:
+    - bundle exec rails factory_bot:lint
+
+brakeman:
+  script:
+    - bundle exec brakeman -q --no-pager
+
+test:
+  script:
+    - RAILS_ENV=test bundle exec rails db:drop db:create db:schema:load
+    - bundle exec rails test
