@@ -16,6 +16,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem "pry", "~> 0.11.3"
   gem "rubocop", "~> 0.56.0"
   gem "haml_lint", "~> 0.27.0"
   gem "reek", "~> 4.8"

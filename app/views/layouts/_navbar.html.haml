@@ -1,4 +1,4 @@
-%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+%nav.navbar.navbar-expand-md.navbar-dark.bg-dark
   %a.navbar-brand{ href: root_path }
     = image_tag 'shards.svg', class: 'navbar-logo'
     HireFlow
@@ -8,4 +8,10 @@
     .navbar-nav
       %a.nav-item.nav-link{ href: new_recruiter_session_path } Sign In
       %a.nav-item.nav-link{ href: new_recruiter_registration_path } Sign Up
-      %a.nav-item.nav-link{ href: new_business_path } New Business
+    - if current_recruiter
+      .navbar-nav.ml-auto
+        - business = current_recruiter.business
+        - if business
+          %a.nav-item.nav-link{ href: business } New Business
+        - else
+          %a.nav-item.nav-link{ href: new_business_path } New Business

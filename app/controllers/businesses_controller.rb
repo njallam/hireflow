@@ -11,7 +11,7 @@ class BusinessesController < ApplicationController
   def create
     redirect_to_old_business
     business = Business.new business_params
-    current_recruiter.assign_business business
+    current_recruiter.update business: business
     business.save
     redirect_to business
   end
@@ -32,8 +32,7 @@ class BusinessesController < ApplicationController
   end
 
   def redirect_to_old_business
-    recruiter = current_recruiter
-    old_business = recruiter.business
+    old_business = current_recruiter.business
     redirect_to old_business if old_business
   end
 end
