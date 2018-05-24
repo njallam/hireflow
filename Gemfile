@@ -20,6 +20,7 @@ group :development, :test do
   gem "haml_lint", "~> 0.27.0"
   gem "reek", "~> 4.8"
   gem "rails_best_practices", "~> 1.19"
+  gem "brakeman", "~> 4.3"
 end
 
 group :development do

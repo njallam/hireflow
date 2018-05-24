@@ -1,0 +1,31 @@
+image: ruby:2.5.1-alpine
+
+services:
+  - postgres
+
+before_script:
+  - bundle install
+
+rubocop:
+  script:
+    - bundle exec rubocop -R
+
+reek:
+  script:
+    - bundle exec reek
+
+haml-lint:
+  script:
+    - bundle exec haml-lint
+
+factory-lint:
+  script:
+    - bundle exec rails factory_bot:lint
+
+brakeman:
+  script:
+    - bundle exec brakeman -q --no-pager
+
+test:
+  script:
+    - bundle exec rails test

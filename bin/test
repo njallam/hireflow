@@ -7,24 +7,27 @@ require 'English'
 error = false
 
 puts '=======RUBOCOP======='
-system('rubocop')
+system('bundle exec rubocop -R')
 error = true if $CHILD_STATUS.exitstatus.nonzero?
 
 puts '=========REEK========='
-system('reek')
+system('bundle exec reek')
 error = true if $CHILD_STATUS.exitstatus.nonzero?
 
 puts '=======HAML-LINT======'
-system('haml-lint')
+system('bundle exec haml-lint')
 error = true if $CHILD_STATUS.exitstatus.nonzero?
 
 puts '===FACTORY_BOT:lint==='
-system('rake factory_bot:lint')
+system('bundle exec rails factory_bot:lint')
 error = true if $CHILD_STATUS.exitstatus.nonzero?
 
 puts '=========RAILS========'
-system('rails test')
+system('bundle exec rails test')
 error = true if $CHILD_STATUS.exitstatus.nonzero?
+
+puts '=======BRAKEMAN======='
+system('bundle exec brakeman --no-summary -q --no-pager')
 
 puts '======================'
 abort if error
