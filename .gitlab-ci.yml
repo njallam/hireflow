@@ -2,6 +2,9 @@ before_script:
   - RAILS_ENV=test bundle install
   - echo $MASTER_KEY > config/master.key
 
+cache:
+  paths:
+    - tmp/cache/
 
 rubocop:
   script:
