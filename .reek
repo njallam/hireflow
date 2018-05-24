@@ -12,5 +12,8 @@
 IrresponsibleModule:
   enabled: false
 
+InstanceVariableAssumption:
+  enabled: false
+
 exclude_paths:
   - db/migrate

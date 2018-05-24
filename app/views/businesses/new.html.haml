@@ -1,0 +1,6 @@
+%h1 Businesses#new
+= simple_form_for @business do |f|
+  = f.error_notification
+  = f.input :name
+  = f.input :bio
+  = f.button :submit

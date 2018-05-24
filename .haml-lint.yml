@@ -25,3 +25,5 @@ RuboCop:
     - Style/TrailingBlankLines
     - Style/TrailingWhitespace
     - Style/WhileUntilModifier
+
+exclude: 'lib/templates/haml/scaffold/_form.html.haml'
