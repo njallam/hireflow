@@ -1,0 +1,9 @@
+%nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  %a.navbar-brand{ href: root_path } Hireflow
+  %button.navbar-toggler{ 'aria-controls' => 'navbar', 'aria-expanded' => 'false', 'aria-label' => 'Toggle navigation', 'data-target' => '#navbar', 'data-toggle' => 'collapse', :type => 'button' }
+    %span.navbar-toggler-icon
+  .collapse.navbar-collapse#navbar
+    .navbar-nav
+      %a.nav-item.nav-link{ href: new_recruiter_session_path } Sign In
+      %a.nav-item.nav-link{ href: new_recruiter_registration_path } Sign Up
+      %a.nav-item.nav-link{ href: new_business_path } New Business
