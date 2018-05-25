@@ -10,10 +10,13 @@ class BusinessesController < ApplicationController
 
   def create
     redirect_to_old_business
-    business = Business.new business_params
-    current_recruiter.update business: business
-    business.save
-    redirect_to business
+    @business = Business.new business_params
+    if @business.save
+      current_recruiter.update business: @business
+      redirect_to @business
+    else
+      render 'new'
+    end
   end
 
   def edit
