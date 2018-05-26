@@ -13,9 +13,10 @@
 !/log/.keep
 !/tmp/.keep
 
-# Ignore all graphs
+# Ignore gem outputs
 gem_graph.png
 erd.pdf
+/coverage
 
 # Ignore uploaded files in development
 /storage/*

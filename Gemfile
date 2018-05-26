@@ -39,6 +39,7 @@ group :test do
   gem 'chromedriver-helper'
   gem "database_cleaner", "~> 1.7"
   gem "faker", "~> 1.8"
+  gem "simplecov", "~> 0.16.1"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
