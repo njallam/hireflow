@@ -1,0 +1,11 @@
+.card-deck
+  .card
+    .card-body
+      %h5.card-title Applicant
+      %p.card-text Looking for jobs
+      = link_to 'Applicant Sign Up', new_applicant_registration_path, class: 'btn btn-primary'
+  .card
+    .card-body
+      %h5.card-title Business
+      %p.card-text Looking for people
+      = link_to 'Business Sign Up', new_business_registration_path, class: 'btn btn-primary'

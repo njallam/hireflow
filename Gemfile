@@ -17,6 +17,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem "pry", "~> 0.11.3"
+  gem "factory_bot_rails", "~> 4.8"
   gem "rubocop", "~> 0.56.0"
   gem "haml_lint", "~> 0.27.0"
   gem "reek", "~> 4.8"
@@ -38,7 +39,6 @@ group :test do
   gem 'chromedriver-helper'
   gem "database_cleaner", "~> 1.7"
   gem "faker", "~> 1.8"
-  gem "factory_bot_rails", "~> 4.8"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
