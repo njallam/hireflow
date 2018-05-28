@@ -15,6 +15,6 @@
             %a.dropdown-item{ href: new_applicant_session_path } Applicant Sign In
             %a.dropdown-item{ href: new_business_session_path } Business Sign In
         - if applicant_signed_in?
-          %a.nav-item.nav-link{ href: applicants_root_path } Applicant Portal
+          %a.nav-item.nav-link{ href: applicant_root_path } Applicant Portal
         - if business_signed_in?
-          %a.nav-item.nav-link{ href: businesses_root_path } Business Portal
+          %a.nav-item.nav-link{ href: business_root_path } Business Portal

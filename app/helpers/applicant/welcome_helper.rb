@@ -1,0 +1,2 @@
+module Applicant::WelcomeHelper
+end
