@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     root 'welcome#index'
     get '/profile', to: 'welcome#edit', as: 'edit_profile'
     patch '/profile', to: 'welcome#update'
+    resources :jobs
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
