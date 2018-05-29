@@ -7,26 +7,21 @@ cache:
     - tmp/cache/
 
 rubocop:
-  script:
-    - bundle exec rubocop -R
+  script: bundle exec rubocop -R
 
 reek:
-  script:
-    - bundle exec reek
+  script: bundle exec reek
 
 haml-lint:
-  script:
-    - bundle exec haml-lint
+  script: bundle exec haml-lint
 
 factory-lint:
-  script:
-    - bundle exec rails factory_bot:lint
+  script: bundle exec rails factory_bot:lint
 
 brakeman:
-  script:
-    - bundle exec brakeman -q --no-pager
+  script: bundle exec brakeman -q --no-pager
 
 test:
   script:
-    - RAILS_ENV=test bundle exec rails db:drop db:create db:schema:load
+    - RAILS_ENV=test bundle exec rails db:reset
     - bundle exec rails test

@@ -1,0 +1,5 @@
+%h2 Edit Profile
+= simple_form_for @business, url: business_profile_path do |f|
+  = f.error_notification
+  = f.input :name
+  = f.button :submit

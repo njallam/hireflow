@@ -3,14 +3,17 @@ Rails.application.routes.draw do
   get '/sign_up', to: 'welcome#new', as: 'sign_up'
 
   devise_for :applicant
-  devise_for :business
-
   namespace :applicant do
     root 'welcome#index'
+    get '/profile', to: 'welcome#edit', as: 'edit_profile'
+    patch '/profile', to: 'welcome#update'
   end
 
+  devise_for :business
   namespace :business do
     root 'welcome#index'
+    get '/profile', to: 'welcome#edit', as: 'edit_profile'
+    patch '/profile', to: 'welcome#update'
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
