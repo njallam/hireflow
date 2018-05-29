@@ -6,6 +6,10 @@ cache:
   paths:
     - tmp/cache/
 
+database:
+  stage: build
+  script: RAILS_ENV=test bundle exec rails db:reset
+
 rubocop:
   script: bundle exec rubocop -R
 
@@ -23,5 +27,4 @@ brakeman:
 
 test:
   script:
-    - RAILS_ENV=test bundle exec rails db:reset
     - bundle exec rails test
