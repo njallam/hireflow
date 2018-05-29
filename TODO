@@ -1,0 +1,2 @@
+render :symbol not 'string'
+Use _form.html.haml partial for new/edit (if possible)
