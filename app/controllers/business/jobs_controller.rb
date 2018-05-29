@@ -2,7 +2,7 @@ class Business::JobsController < Business::ApplicationController
   before_action :set_job, only: %i[show edit update destroy]
 
   def index
-    @jobs = Job.all
+    @jobs = Job.where business: @business
   end
 
   def show; end
@@ -41,6 +41,7 @@ class Business::JobsController < Business::ApplicationController
 
   def set_job
     @job = Job.find(params[:id])
+    redirect_to business_jobs_path unless @job.business == @business
   end
 
   def job_params
