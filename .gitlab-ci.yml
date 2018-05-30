@@ -1,5 +1,5 @@
 before_script:
-  - RAILS_ENV=test bundle install
+  - bundle install
   - echo $MASTER_KEY > config/master.key
 
 cache:
@@ -28,3 +28,11 @@ brakeman:
 test:
   script:
     - bundle exec rails test
+
+staging:
+  stage: deploy
+  script: bundle exec cap staging deploy
+  environment:
+    name: staging
+  only:
+    - master

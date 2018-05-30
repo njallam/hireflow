@@ -1,0 +1,18 @@
+# config valid for current version and patch releases of Capistrano
+lock '~> 3.10.2'
+
+set :application, 'hireflow'
+
+set :repo_url, 'git@gitlab.doc.ic.ac.uk:g1727103/hireflow.git'
+
+set :rbenv_type, :user
+set :rbenv_ruby, File.read('.ruby-version').strip
+
+set :pty, true
+
+set :linked_files, %w[config/master.key]
+set :linked_dirs, fetch(:linked_dirs, [])
+  .push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets',
+        'vendor/bundle', 'public/system', 'public/uploads')
+
+set :deploy_to, "/var/www/#{fetch(:application)}"
