@@ -26,7 +26,7 @@
         %li.nav-item.dropdown
           %a.nav-link.dropdown-toggle#navbar-sign-up-menu-link{ 'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown', :href => '#' }
             Sign In
-          .dropdown-menu{ 'aria-labelledby' => 'sign-up-menu-link.nav-link' }
+          .dropdown-menu.dropdown-menu-right{ 'aria-labelledby' => 'sign-up-menu-link.nav-link' }
             - unless applicant_signed_in?
               %a.dropdown-item{ href: new_applicant_session_path } Applicant Sign In
             - unless business_signed_in?
