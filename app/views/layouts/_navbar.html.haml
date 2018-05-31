@@ -8,6 +8,7 @@
     .navbar-nav
       - if applicant_controller?
         %a.nav-item.nav-link{ href: '#' } Edit Profile
+        %a.nav-item.nav-link{ href: applicant_jobs_path } Jobs
       - elsif business_controller?
         %a.nav-item.nav-link{ href: business_edit_profile_path } Edit Business
         %a.nav-item.nav-link{ href: business_jobs_path } Jobs
