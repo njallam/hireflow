@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     root 'welcome#index'
     get '/profile', to: 'welcome#edit', as: 'edit_profile'
     patch '/profile', to: 'welcome#update'
+    resources :jobs, only: %i[index show]
   end
 
   devise_for :business
