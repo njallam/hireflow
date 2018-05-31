@@ -1,2 +1,4 @@
-%h1 Applicant::Jobs#show
-%p Find me in app/views/applicant/jobs/show.html.haml
+%h2 #{@job.position} at #{@job.business.name}
+%p= @job.description
+
+= link_to 'Back', applicant_jobs_path

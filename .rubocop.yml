@@ -24,6 +24,8 @@ Style/FrozenStringLiteralComment:
 
 Metrics/LineLength:
   Max: 100
+  Exclude:
+    - db/seeds.rb
 
 Style/ClassAndModuleChildren:
   Enabled: false
