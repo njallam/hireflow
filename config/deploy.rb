@@ -8,6 +8,7 @@ set :repo_url, 'git@gitlab.doc.ic.ac.uk:g1727103/hireflow.git'
 set :rbenv_type, :user
 set :rbenv_ruby, File.read('.ruby-version').strip
 
+set :format_options, color: true
 set :pty, true
 
 if ENV.key?('CI')
