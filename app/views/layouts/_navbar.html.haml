@@ -22,8 +22,8 @@
         - elsif business_signed_in?
           %a.btn.btn-outline-primary{ href: destroy_business_session_path, 'data-method': 'delete' } Logout
         - else
-          %a.btn.btn-primary.mx-2{ href: sign_up_path } Sign Up
-          .dropdown
+          %a.btn.btn-primary.mx-2.mb-auto{ href: sign_up_path } Sign Up
+          .dropdown.mb-auto
             %a.btn.btn-outline-primary.dropdown-toggle#sign-in-dropdown{ 'aria-expanded': 'false', 'aria-haspopup': 'true', 'data-toggle': 'dropdown', href: '#', role: 'button' }
               Sign In
             .dropdown-menu.dropdown-menu-right{ 'aria-labelledby': 'sign-in-dropdown' }
