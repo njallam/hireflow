@@ -1,8 +1,9 @@
-class Business::JobsController < Business::ApplicationController
+class JobsController < ApplicationController
   before_action :set_job, only: %i[show edit update destroy]
+  before_action :redirect_business_job, only: %i[new create edit update destroy]
 
   def index
-    @jobs = Job.where business: @business
+    @jobs = Job.all
   end
 
   def show; end
@@ -18,7 +19,7 @@ class Business::JobsController < Business::ApplicationController
     @job.business = @business
 
     if @job.save
-      redirect_to business_job_path(@job), notice: 'Job was successfully created.'
+      redirect_to job_path(@job), notice: 'Job was successfully created.'
     else
       render :new
     end
@@ -26,7 +27,7 @@ class Business::JobsController < Business::ApplicationController
 
   def update
     if @job.update(job_params)
-      redirect_to business_job_path(@job), notice: 'Job was successfully updated.'
+      redirect_to job_path(@job), notice: 'Job was successfully updated.'
     else
       render :edit
     end
@@ -34,14 +35,18 @@ class Business::JobsController < Business::ApplicationController
 
   def destroy
     @job.destroy
-    redirect_to business_jobs_path, notice: 'Job was successfully destroyed.'
+    redirect_to jobs_path, notice: 'Job was successfully destroyed.'
   end
 
   private
 
   def set_job
     @job = Job.find(params[:id])
-    redirect_to business_jobs_path unless @job.business == @business
+  end
+
+  def redirect_business_job
+    authenticate_business!
+    redirect_to jobs_path unless business_job?
   end
 
   def job_params

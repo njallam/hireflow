@@ -1,0 +1,7 @@
+%h2 #{@job.position} at #{@job.business.name}
+%p= @job.description
+
+- if business_job? @job
+  = link_to 'Edit', edit_job_path(@job)
+  \|
+= link_to 'Back', jobs_path

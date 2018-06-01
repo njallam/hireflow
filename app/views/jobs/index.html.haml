@@ -1,0 +1,25 @@
+%h1 Listing jobs
+
+%table
+  %thead
+    %tr
+      %th Position
+      %th Business
+      %th Posted
+      %th
+      %th
+      %th
+
+  %tbody
+    - @jobs.each do |job|
+      %tr
+        %td= job.position
+        %td= job.business.name
+        %td= job.created_at
+        %td= link_to 'Show', job_path(job)
+        %td= link_to 'Edit', edit_job_path(job)
+        %td= link_to 'Destroy', job_path(job), method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+- if business_signed_in?
+  = link_to 'New Job', new_job_path

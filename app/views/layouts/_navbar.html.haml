@@ -2,33 +2,19 @@
   %a.navbar-brand{ href: root_path }
     = image_tag 'shards.svg', class: 'navbar-logo'
   %h5.my-0.mr-md-auto.font-weight-bold HireFlow
-  - if applicant_controller?
+  - if applicant_signed_in?
     %nav.my-2.my-md-0.mr-md-3
-      %a.p-2.text-dark{ href: applicant_jobs_path } Search
+      %a.p-2.text-dark{ href: jobs_path } Search
       %a.p-2.text-dark{ href: '#' } Applications
       %a.p-2.text-dark{ href: '#' } Profile
-      %a.p-2.text-dark{ href: '#' } Settings
     = link_to('Logout', destroy_applicant_session_path, method: :delete)
-  - elsif business_controller?
-    %nav.my-2.my-md-0.mr-md-3
-      %a.p-2.text-dark{ href: business_jobs_path } Home
-      %a.p-2.text-dark{ href: '#' } Post
-      %a.p-2.text-dark{ href: business_edit_profile_path } Profile
-      %a.p-2.text-dark{ href: '#' } Settings
-    = link_to('Logout', destroy_business_session_path, method: :delete)
-  - elsif applicant_signed_in?
-    %nav.my-2.my-md-0.mr-md-3
-      %a.p-2.text-dark{ href: applicant_root_path } Applicant Portal
-    %a.btn.btn-outline-primary.mx-2{ href: sign_up_path } Sign Up
   - elsif business_signed_in?
     %nav.my-2.my-md-0.mr-md-3
-      %a.p-2.text-dark{ href: business_root_path } Business Portal
+      %a.p-2.text-dark{ href: jobs_path } Jobs
+      %a.p-2.text-dark{ href: edit_profile_path } Profile
+    = link_to('Logout', destroy_business_session_path, method: :delete)
   - else
     %nav.my-2.my-md-0.mr-md-3
-      %a.p-2.text-dark{ href: '#' } Features
-      %a.p-2.text-dark{ href: '#' } Steps
-      %a.p-2.text-dark{ href: '#' } Pricing
-      %a.p-2.text-dark{ href: '#' } Contact Us
     .btn-group
       %button.btn.btn-primary.mr-2.dropdown-toggle{ 'aria-expanded': 'false', 'aria-haspopup': 'true', 'data-toggle': 'dropdown', type: 'button' }
         Sign In
@@ -37,4 +23,3 @@
         .dropdown-divider
         %a.dropdown-item{ href: new_business_session_path } Business
     %a.btn.btn-outline-primary.mx-2{ href: sign_up_path } Sign Up
-
