@@ -2,32 +2,28 @@ before_script:
   - bundle install
   - echo $MASTER_KEY > config/master.key
 
-cache:
-  paths:
-    - tmp/cache/
-
 database:
   stage: build
   script: RAILS_ENV=test bundle exec rails db:reset
 
 rubocop:
-  script: bundle exec rubocop -R
+  script: bundle exec rubocop -R --color
 
 reek:
-  script: bundle exec reek
+  script: bundle exec reek --color
 
 haml-lint:
-  script: bundle exec haml-lint
+  script: bundle exec haml-lint --color
 
 factory-lint:
   script: bundle exec rails factory_bot:lint
 
 brakeman:
-  script: bundle exec brakeman -q --no-pager
+  script: bundle exec brakeman -q --no-pager --color
 
 test:
   script:
-    - bundle exec rails test
+    - bundle exec rails test --color
 
 staging:
   stage: deploy
