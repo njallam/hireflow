@@ -1,25 +1,32 @@
-.d-flex.flex-column.flex-md-row.align-items-center.p-3.px-md-4.mb-3.bg-white.border-bottom.box-shadow
+%nav.navbar.navbar-expand-md.navbar-light.border-bottom.p-3.px-md-4
   %a.navbar-brand{ href: root_path }
     = image_tag 'shards.svg', class: 'navbar-logo'
-  %h5.my-0.mr-md-auto.font-weight-bold HireFlow
-  - if applicant_signed_in?
-    %nav.my-2.my-md-0.mr-md-3
-      %a.p-2.text-dark{ href: jobs_path } Search
-      %a.p-2.text-dark{ href: '#' } Applications
-      %a.p-2.text-dark{ href: '#' } Profile
-    = link_to('Logout', destroy_applicant_session_path, method: :delete)
-  - elsif business_signed_in?
-    %nav.my-2.my-md-0.mr-md-3
-      %a.p-2.text-dark{ href: jobs_path } Jobs
-      %a.p-2.text-dark{ href: edit_profile_path } Profile
-    = link_to('Logout', destroy_business_session_path, method: :delete)
-  - else
-    %nav.my-2.my-md-0.mr-md-3
-    .btn-group
-      %button.btn.btn-primary.mr-2.dropdown-toggle{ 'aria-expanded': 'false', 'aria-haspopup': 'true', 'data-toggle': 'dropdown', type: 'button' }
-        Sign In
-      .dropdown-menu
-        %a.dropdown-item{ href: new_applicant_session_path } Applicant
-        .dropdown-divider
-        %a.dropdown-item{ href: new_business_session_path } Business
-    %a.btn.btn-outline-primary.mx-2{ href: sign_up_path } Sign Up
+    %span.navbar-brand-text HireFlow
+  %button.navbar-toggler{ 'aria-controls': 'navbar', 'aria-expanded': 'false', 'aria-label': 'Toggle navigation', 'data-target': '#navbar', 'data-toggle': 'collapse', type: 'button' }
+    %span.navbar-toggler-icon
+  .collapse.navbar-collapse#navbar
+    .navbar-nav.ml-auto
+      - if applicant_signed_in?
+        %a.nav-link{ href: jobs_path } Search
+        %a.nav-link.disabled{ href: '#' } Applications
+        %a.nav-link.disabled{ href: '#' } Profile
+      - elsif business_signed_in?
+        %a.nav-link{ href: jobs_path } Jobs
+        %a.nav-link{ href: edit_profile_path } Profile
+      - else
+        %a.nav-link.disabled{ href: '#' } About
+      -# Account
+      %form.form-inline
+        - if applicant_signed_in?
+          %a.btn.btn-outline-primary{ href: destroy_applicant_session_path, 'data-method': 'delete' } Logout
+        - elsif business_signed_in?
+          %a.btn.btn-outline-primary{ href: destroy_business_session_path, 'data-method': 'delete' } Logout
+        - else
+          %a.btn.btn-primary.mx-2{ href: sign_up_path } Sign Up
+          .dropdown
+            %a.btn.btn-outline-primary.dropdown-toggle#sign-in-dropdown{ 'aria-expanded': 'false', 'aria-haspopup': 'true', 'data-toggle': 'dropdown', href: '#', role: 'button' }
+              Sign In
+            .dropdown-menu.dropdown-menu-right{ 'aria-labelledby': 'sign-in-dropdown' }
+              %a.dropdown-item{ href: new_applicant_session_path } Applicant
+              .dropdown-divider
+              %a.dropdown-item{ href: new_business_session_path } Business
