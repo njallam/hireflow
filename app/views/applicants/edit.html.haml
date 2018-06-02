@@ -1,5 +1,6 @@
 %h2 Edit Profile
 = simple_form_for @applicant, url: applicant_profile_path do |f|
   = f.error_notification
-  = f.input :name
+  = f.input :first_name
+  = f.input :last_name
   = f.button :submit
