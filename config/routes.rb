@@ -7,6 +7,11 @@ Rails.application.routes.draw do
 
   resources :jobs
 
-  get '/profile', to: 'welcome#edit', as: 'edit_profile'
-  patch '/profile', to: 'welcome#update'
+  scope :applicant do
+    resource :profile, controller: 'applicants', as: 'applicant_profile', only: %i[edit update]
+  end
+
+  scope :business do
+    resource :profile, controller: 'businesses', as: 'business_profile', only: %i[edit update]
+  end
 end
