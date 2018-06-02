@@ -14,5 +14,4 @@ Rails.application.routes.draw do
   scope :business do
     resource :profile, controller: 'businesses', as: 'business_profile', only: %i[edit update]
   end
-
 end
