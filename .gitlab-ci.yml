@@ -18,9 +18,6 @@ haml-lint:
 factory-lint:
   script: bundle exec rails factory_bot:lint
 
-brakeman:
-  script: bundle exec brakeman -q --no-pager --color
-
 test:
   script:
     - bundle exec rails test --color

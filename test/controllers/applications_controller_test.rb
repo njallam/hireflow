@@ -18,5 +18,4 @@ class ApplicationsControllerTest < ActionDispatch::IntegrationTest
       2.times { post apply_job_url(@job) }
     end
   end
-
 end

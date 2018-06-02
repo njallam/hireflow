@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :application do
-    job nil
-    applicant nil
+    job
+    applicant
   end
 end

@@ -6,7 +6,7 @@ class ApplicationsController < ApplicationController
     if application.save
       redirect_to application
     else
-      redirect_to Application.find_by applicant: application.applicant, job: application.job
+      redirect_to application.find_existing
     end
   end
 
