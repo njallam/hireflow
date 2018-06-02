@@ -10,6 +10,7 @@ class ApplicationsControllerTest < ActionDispatch::IntegrationTest
   test 'should be able to apply to job' do
     assert_difference 'Application.count', +1 do
       post apply_job_url(@job)
+      assert_redirected_to @applicant.applications.last
     end
   end
 
@@ -17,5 +18,10 @@ class ApplicationsControllerTest < ActionDispatch::IntegrationTest
     assert_difference 'Application.count', +1 do
       2.times { post apply_job_url(@job) }
     end
+  end
+
+  test 'should show all applications for an applicant' do
+    get applications_path
+    assert_response :success
   end
 end

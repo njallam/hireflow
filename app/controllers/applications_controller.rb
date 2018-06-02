@@ -1,4 +1,10 @@
 class ApplicationsController < ApplicationController
+  before_action :authenticate_applicant!, only: %i[index create]
+
+  def index
+    @applications = current_applicant.applications
+  end
+
   def create
     application = Application.new
     application.applicant = current_applicant
@@ -11,6 +17,7 @@ class ApplicationsController < ApplicationController
   end
 
   def show
+    # TODO: authenticate
     @application = Application.find params[:id]
   end
 end
