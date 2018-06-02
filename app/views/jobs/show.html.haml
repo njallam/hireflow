@@ -7,3 +7,9 @@
   = link_to 'Edit', edit_job_path(@job)
   \|
 = link_to 'Back', jobs_path
+
+- if business_job? @job
+  %h4 Applicants
+  %ul
+  - @job.applications.each do |application|
+    %li= link_to application.applicant.name, application
