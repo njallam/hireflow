@@ -2,7 +2,7 @@ require 'test_helper'
 
 class BusinessesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @business = build :business
+    @business = create :business
   end
 
   test 'should allow editing business profile' do

@@ -1,6 +1,8 @@
 %h2 #{@job.position} at #{@job.business.name}
 %p= @job.description
 
+- unless business_signed_in?
+  = link_to 'Apply', apply_job_path, method: :post, class: 'btn btn-primary'
 - if business_job? @job
   = link_to 'Edit', edit_job_path(@job)
   \|

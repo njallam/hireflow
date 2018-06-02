@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   devise_for :business
 
   resources :jobs
+  post '/jobs/:id/apply', to: 'applications#create', as: 'apply_job'
+  resources :applications, only: %i[show]
 
   scope :applicant do
     resource :profile, controller: 'applicants', as: 'applicant_profile', only: %i[edit update]

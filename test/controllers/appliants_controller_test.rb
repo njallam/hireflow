@@ -2,7 +2,7 @@ require 'test_helper'
 
 class AppliantsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @applicant = build :applicant
+    @applicant = create :applicant
   end
 
   test 'should allow editing applicant profile' do
