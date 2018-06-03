@@ -58,3 +58,4 @@ gem 'haml', '~> 5.0'
 gem 'haml-rails', '~> 1.0'
 gem 'devise', '~> 4.4'
 gem 'simple_form', '~> 4.0'
+gem "aasm", "~> 4.12"

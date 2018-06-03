@@ -5,9 +5,15 @@ Rails.application.routes.draw do
   devise_for :applicant
   devise_for :business
 
-  resources :jobs
-  post '/jobs/:id/apply', to: 'applications#create', as: 'apply_job'
-  resources :applications, only: %i[show index]
+  resources :jobs do
+    post 'apply', on: :member, to: 'applications#create'
+  end
+  resources :applications, only: %i[show index] do
+    patch 'confirm', on: :member
+    patch 'submit', on: :member
+    patch 'accept', on: :member
+    patch 'reject', on: :member
+  end
 
   scope :applicant do
     resource :profile, controller: 'applicants', as: 'applicant_profile', only: %i[edit update]
