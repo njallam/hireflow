@@ -16,6 +16,20 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'should allow making a new job' do
+    sign_in @business
+    get new_job_url
+    assert_response :success
+  end
+
+  # test 'should allow creating a job' do
+  #   # TODO
+  # end
+  #
+  # test 'should allow deleting a job' do
+  #   # TODO
+  # end
+
   test 'should allow editing a job' do
     sign_in @business
     get edit_job_url @job

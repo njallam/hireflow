@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
   before_action :set_job, only: %i[show edit update destroy]
-  before_action :redirect_business_job, only: %i[new create edit update destroy] # FIXME
+  before_action :authenticate_business!, only: %i[new create edit update destroy]
+  before_action :redirect_business_job, only: %i[edit update destroy]
 
   helper_method :business_job?
 
@@ -54,7 +55,6 @@ class JobsController < ApplicationController
   end
 
   def redirect_business_job
-    authenticate_business!
     redirect_to jobs_path unless business_job? @job
   end
 
