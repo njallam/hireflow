@@ -1,3 +1,2 @@
 %h2 Application view (#{@application.aasm_state})
-%p= @application.applicant.name
-= link_to @application.job.title, @application.job
+%p #{@application.applicant.name} applying for #{link_to @application.job.title, @application.job}
