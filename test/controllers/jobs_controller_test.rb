@@ -22,7 +22,6 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  # FIXME
   test 'should allow updating a job' do
     sign_in @business
     new_position = Faker::Job.title

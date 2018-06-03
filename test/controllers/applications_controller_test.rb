@@ -18,6 +18,7 @@ class ApplicationsControllerTest < ActionDispatch::IntegrationTest
   test 'should not be able to apply to same job twice' do
     assert_difference 'Application.count', +1 do
       2.times { post apply_job_url @job }
+      assert_redirected_to @applicant.applications.last
     end
   end
 

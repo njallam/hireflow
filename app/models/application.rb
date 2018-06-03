@@ -29,6 +29,6 @@ class Application < ApplicationRecord
   end
 
   def find_existing
-    Application.find_by applicant: applicant, job: job
+    Application.find_by as_json.compact
   end
 end
