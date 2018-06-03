@@ -22,15 +22,16 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  # # FIXME
-  # test 'should allow updating a job' do
-  #   sign_in @business
-  #   new_position = Faker::Job.title
-  #   new_description = Faker::Lorem.paragraphs
-  #   patch job_url @job, params: { job: { position: new_position,
-  #                                        description: new_description } }
-  #   assert_equal new_position, @job.position
-  #   assert_equal new_description, @job.description
-  #   assert_redirected_to job_path @job
-  # end
+  # FIXME
+  test 'should allow updating a job' do
+    sign_in @business
+    new_position = Faker::Job.title
+    new_description = Faker::Lorem.paragraph
+    patch job_url @job, params: { job: { position: new_position,
+                                         description: new_description } }
+    @job = Job.find @job.id
+    assert_equal new_position, @job.position
+    assert_equal new_description, @job.description
+    assert_redirected_to job_path @job
+  end
 end

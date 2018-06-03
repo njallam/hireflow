@@ -15,6 +15,7 @@ class BusinessesControllerTest < ActionDispatch::IntegrationTest
     sign_in @business
     new_name = Faker::Company.name
     patch business_profile_url, params: { business: { name: new_name } }
+    @business = Business.find @business.id
     assert_equal new_name, @business.name
     assert_redirected_to edit_business_profile_path
   end
