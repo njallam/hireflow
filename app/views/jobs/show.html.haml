@@ -1,5 +1,34 @@
-%h2 #{@job.position} at #{@job.business.name}
-%p= @job.description
+.row
+  .col-md-3
+    .card
+      = image_tag 'shards.svg', class: 'img img-thumbnail', style: 'height: 222px'
+  .col-md-9
+    .card
+      .card-header
+        #{@job.position} at #{@job.business.name}
+      .card-body
+        .row
+          .col-md-6
+            %h5 Job Information
+            %table
+              %tr
+                %th Position:
+                %td= @job.position
+              %tr
+                %th Description:
+                %td= @job.description
+          .col-md-6
+            %h5 Business Information
+            %table
+              %tr
+                %th Business:
+                %td= @job.business.name
+              %tr
+                %th City:
+                %td= @job.business.city
+              %tr
+                %th Description:
+                %td= @job.business.description
 
 - unless business_signed_in?
   = link_to 'Apply', apply_job_path, method: :post, class: 'btn btn-primary'
