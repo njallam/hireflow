@@ -28,21 +28,21 @@ class ApplicationsController < ApplicationController
       @application.update params.require(:application).permit(:cover_letter)
       flash[:notice] = 'Cover letter saved.'
       @application.submit! if params[:commit] == 'Submit'
-      redirect_to @application
+    elsif @application.interview?
+      # TODO
     end
+    redirect_to @application
   end
 
-  def show
-  end
+  def show; end
 
   private
 
   def set_application
-    @application= Application.find params[:id]
+    @application = Application.find params[:id]
   end
 
   def redirect_application
     # TODO
   end
-
 end
