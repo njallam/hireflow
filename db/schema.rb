@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_03_123412) do
+ActiveRecord::Schema.define(version: 2018_06_04_104200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2018_06_03_123412) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "aasm_state"
+    t.text "cover_letter"
     t.index ["applicant_id"], name: "index_applications_on_applicant_id"
     t.index ["job_id"], name: "index_applications_on_job_id"
   end

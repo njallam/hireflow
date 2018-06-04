@@ -8,9 +8,8 @@ Rails.application.routes.draw do
   resources :jobs do
     post 'apply', on: :member, to: 'applications#create'
   end
-  resources :applications, only: %i[show index] do
+  resources :applications, only: %i[show index update] do
     patch 'confirm', on: :member
-    patch 'submit', on: :member
     patch 'accept', on: :member
     patch 'reject', on: :member
   end

@@ -1,2 +1,10 @@
 %h2 Application view (#{@application.aasm_state})
 %p #{@application.applicant.name} applying for #{link_to @application.job.title, @application.job}
+- if @application.personal?
+  = link_to 'Confirm', confirm_application_path, method: :patch, class: 'btn btn-primary'
+- elsif @application.cover?
+  = simple_form_for @application do |f|
+    = f.error_notification
+    = f.input :cover_letter
+    = f.button :submit, 'Save'
+    = f.button :submit, 'Submit', class: 'btn-primary'
