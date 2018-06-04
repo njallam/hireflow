@@ -1,6 +1,5 @@
-%h2 Application view (#{@application.aasm_state})
+%h2.mb-4 #{@application.applicant.name} applying for #{link_to @application.job.title, @application.job} (#{@application.aasm_state} stage)
 = render @application.job
-%p #{@application.applicant.name} applying for #{link_to @application.job.title, @application.job}
 - if applicant_signed_in?
   - if @application.personal?
     .card
@@ -11,12 +10,34 @@
       .card-footer
         = link_to 'Confirm Details', confirm_application_path, method: :patch, class: 'btn btn-primary'
   - elsif @application.cover?
-    = simple_form_for @application do |f|
-      = f.error_notification
-      = f.input :cover_letter
-      = f.button :submit, 'Save'
-      = f.button :submit, 'Submit', class: 'btn-primary'
+    .card
+      .card-header
+        Stage: #{@application.aasm_state}
+      .card-body
+        = simple_form_for @application do |f|
+          = f.error_notification
+          = f.input :cover_letter
+          = f.button :submit, 'Save'
+          = f.button :submit, 'Submit', class: 'btn-primary'
+  - elsif @application.interview?
+    .card
+      .card-header
+        Stage: #{@application.aasm_state}
+      .card-body
+        %p Please wait for the business to respond to your application.
+      .card-footer
 - if business_signed_in?
+  - if @application.personal?
+    .card
+      .card-header
+        Stage: #{@application.aasm_state}
+      .card-body
+        %p #{@application.applicant.name} applying for #{link_to @application.job.title, @application.job}
   - if @application.interview?
-    = link_to 'Accept', accept_application_path, method: :patch, class: 'btn btn-success'
-    = link_to 'Reject', reject_application_path, method: :patch, class: 'btn btn-danger'
+    .card
+      .card-header
+        Stage: #{@application.aasm_state}
+      .card-body
+      .card-footer
+        = link_to 'Accept', accept_application_path, method: :patch, class: 'btn btn-success'
+        = link_to 'Reject', reject_application_path, method: :patch, class: 'btn btn-danger'

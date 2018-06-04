@@ -1,10 +1,28 @@
+%h2.mb-4= @job.title
 = render @job
+.row
+  .col-md-4
+    .card
+      .card-header
+        Who
+      .card-body
+        Blah
+  .col-md-4
+    .card
+      .card-header
+        What
+      .card-body
+        Blah
+  .col-md-4
+    .card
+      .card-header
+        Where
+      .card-body
+        Blah
 - unless business_signed_in?
   = link_to 'Apply', apply_job_path, method: :post, class: 'btn btn-primary'
 - if business_job? @job
-  = link_to 'Edit', edit_job_path(@job)
-  \|
-= link_to 'Back', jobs_path
+  = link_to 'Edit', edit_job_path(@job), class: 'btn btn-primary'
 
 - if business_job? @job
   %h4 Applicants

@@ -18,6 +18,6 @@ class ApplicantsController < ApplicationController
   private
 
   def applicant_params
-    params.require(:applicant).permit(:first_name, :last_name)
+    params.require(:applicant).permit(:first_name, :last_name, :university)
   end
 end
