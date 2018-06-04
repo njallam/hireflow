@@ -1,9 +1,15 @@
 %h2 Application view (#{@application.aasm_state})
+= render @application.job
 %p #{@application.applicant.name} applying for #{link_to @application.job.title, @application.job}
 - if applicant_signed_in?
   - if @application.personal?
-    = render @application.applicant
-    = link_to 'Confirm', confirm_application_path, method: :patch, class: 'btn btn-primary'
+    .card
+      .card-header
+        Stage: #{@application.aasm_state}
+      .card-body
+        = render @application.applicant
+      .card-footer
+        = link_to 'Confirm Details', confirm_application_path, method: :patch, class: 'btn btn-primary'
   - elsif @application.cover?
     = simple_form_for @application do |f|
       = f.error_notification
