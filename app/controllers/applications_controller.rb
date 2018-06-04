@@ -1,11 +1,15 @@
 class ApplicationsController < ApplicationController
   before_action :set_application, only: %i[show confirm update accept reject]
   before_action :authenticate_viewer, only: %i[show confirm update]
-  before_action :authenticate_applicant!, only: :index
+  before_action :authenticate_viewer!, only: :index
   before_action :redirect_business, only: %i[accept reject]
 
   def index
-    @applications = current_applicant.applications
+    @applications = if applicant_signed_in?
+                      current_applicant.applications
+                    else
+                      current_business.applications
+                    end
   end
 
   def create
@@ -57,6 +61,11 @@ class ApplicationsController < ApplicationController
     else
       redirect_to root_url, alert: 'You must be signed in to view an application.'
     end
+  end
+
+  def authenticate_viewer!
+    redirect_to root_url, alert: 'You must be signed in to view an application.' unless
+      applicant_signed_in? || business_signed_in?
   end
 
   def set_application

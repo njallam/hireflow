@@ -1,4 +1,8 @@
 %h2 Your Applications
 %ul
-- @applications.each do |application|
-  %li= link_to application.job.title, application
+- if applicant_signed_in?
+  - @applications.each do |application|
+    %li= link_to application.job.title, application
+- else
+  - @applications.each do |application|
+    %li= link_to "#{application.applicant.name} for #{application.job.position}", application

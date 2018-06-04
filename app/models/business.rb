@@ -5,4 +5,5 @@ class Business < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :jobs, dependent: :destroy
+  has_many :applications, through: :jobs
 end
