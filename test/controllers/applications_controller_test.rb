@@ -28,6 +28,7 @@ class ApplicationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should show the status of an application for an applicant' do
+    sign_in @application.applicant
     get application_path @application
     assert_response :success
   end
