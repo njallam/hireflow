@@ -2,6 +2,7 @@
 %p #{@application.applicant.name} applying for #{link_to @application.job.title, @application.job}
 - if applicant_signed_in?
   - if @application.personal?
+    = render @application.applicant
     = link_to 'Confirm', confirm_application_path, method: :patch, class: 'btn btn-primary'
   - elsif @application.cover?
     = simple_form_for @application do |f|
