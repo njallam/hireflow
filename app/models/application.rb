@@ -10,22 +10,30 @@ class Application < ApplicationRecord
   aasm do
     state :personal, intial: true
     state :cover
+    state :screening
     state :interview
     state :accepted
-    state :rejected
 
     event :confirm do
       transitions from: [:personal], to: :cover
     end
     event :submit do
-      transitions from: [:cover], to: :interview
+      transitions from: [:cover], to: :screening
     end
     event :accept do
+      # TODO: guard
+      transitions from: [:screening], to: :interview
       transitions from: [:interview], to: :accepted
     end
-    event :reject do
-      transitions from: [:interview], to: :rejected
-    end
+  end
+
+  def reject
+    self.rejected = true
+  end
+
+  def reject!
+    reject
+    save
   end
 
   def find_existing
@@ -33,14 +41,18 @@ class Application < ApplicationRecord
   end
 
   def personaled?
-    accepted? || rejected? || interview? || cover?
+    covered? || cover?
   end
 
   def covered?
-    accepted? || rejected? || interview?
+    screened? || screening?
+  end
+
+  def screened?
+    interviewed? || interview?
   end
 
   def interviewed?
-    accepted? || rejected?
+    accepted?
   end
 end
