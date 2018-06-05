@@ -31,4 +31,16 @@ class Application < ApplicationRecord
   def find_existing
     Application.find_by applicant: applicant, job: job
   end
+
+  def personaled?
+    accepted? || rejected? || interview? || cover?
+  end
+
+  def covered?
+    accepted? || rejected? || interview?
+  end
+
+  def interviewed?
+    accepted? || rejected?
+  end
 end

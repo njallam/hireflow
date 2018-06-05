@@ -1,5 +1,26 @@
 %h2.mb-4 #{@application.applicant.name} applying for #{link_to @application.job.title, @application.job} (#{@application.aasm_state} stage)
 = render @application.job
+.steps-form-2.my-5
+  .steps-row-2.setup-panel-2.d-flex.justify-content-between
+    .steps-step-2
+      %span.btn.step-2.ml-0{ class: ('green' if @application.personaled?) }
+        = icon 'fas', 'user-circle', class: 'fa-3x'
+    .steps-step-2
+      %a.btn.step-2.ml-0{ class: ('green' if @application.covered?) }
+        = icon 'fas', 'edit', class: 'fa-3x'
+    .steps-step-2
+      %a.btn.step-2.ml-0
+        = icon 'fas', 'clock', class: 'fa-3x'
+    .steps-step-2
+      %a.btn.step-2
+        = icon 'fas', 'file-alt', class: 'fa-3x'
+    .steps-step-2
+      %a.btn.step-2{ class: ('green' if @application.interviewed?) }
+        = icon 'fas', 'handshake', class: 'fa-3x'
+    .steps-step-2
+      %span.btn.step-2.mr-0{ class: ('green' if @application.accepted?) }
+        = icon 'fas', 'check', class: 'fa-3x'
+
 - if applicant_signed_in?
   - if @application.personal?
     .card
@@ -26,6 +47,13 @@
       .card-body
         %p Please wait for the business to respond to your application.
       .card-footer
+  - elsif @application.accepted?
+    .card
+      .card-header
+        Stage: #{@application.aasm_state}
+      .card-body
+        %p You've been accepted for this position.
+      .card-footer
 - if business_signed_in?
   - if @application.personal?
     .card
@@ -33,7 +61,7 @@
         Stage: #{@application.aasm_state}
       .card-body
         %p #{@application.applicant.name} applying for #{link_to @application.job.title, @application.job}
-  - if @application.interview?
+  - elsif @application.interview?
     .card
       .card-header
         Stage: #{@application.aasm_state}
@@ -41,3 +69,10 @@
       .card-footer
         = link_to 'Accept', accept_application_path, method: :patch, class: 'btn btn-success'
         = link_to 'Reject', reject_application_path, method: :patch, class: 'btn btn-danger'
+  - elsif @application.accepted?
+    .card
+      .card-header
+        Stage: #{@application.aasm_state}
+      .card-body
+        %p You have accepted #{@application.applicant.name} for this position.
+      .card-footer

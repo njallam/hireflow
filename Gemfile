@@ -59,3 +59,4 @@ gem 'haml-rails', '~> 1.0'
 gem 'devise', '~> 4.4'
 gem 'simple_form', '~> 4.0'
 gem "aasm", "~> 4.12"
+gem "font-awesome-sass", "~> 5.0"

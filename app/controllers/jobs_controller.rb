@@ -19,7 +19,7 @@ class JobsController < ApplicationController
 
   def create
     @job = Job.new job_params
-    @job.business = @business
+    @job.business = current_business
 
     if @job.save
       flash[:notice] = 'Job was successfully created.'
