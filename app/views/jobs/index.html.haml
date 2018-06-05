@@ -1,24 +1,41 @@
-%h1 Listing jobs
+%h1 Job Listings
 
-%table
-  %thead
-    %tr
-      %th Position
-      %th Business
-      %th Posted
-      %th
-      %th
-      %th
+.row.my-4
+  .col-md-3
+    .card
+      .card-header
+        Your Filters
+      .card-body
+        .card.mb-4
+          .card-header
+            City
+          .card-body
+            London
+        .card.my-4
+          .card-header
+            Job Title
+          .card-body
+            Programmer
+        .card.mt-4
+          .card-header
+            Company Size
+          .card-body
+            Medium
+  .col-md-9
+    .card
+      - @jobs.each do |job|
+        .card
+          .card-body
+            .row
+              .col-auto.mr-2
+                = image_tag 'shards.svg', class: 'img', style: 'height: 100%'
+              .col-md-8.flex-col
+                %p.my-0= job.position
+                %p.my-0= job.business.name
+                %p.my-0= job.created_at
+              .col-md-2
+                %a.btn.btn-primary{ href: job_path(job) } View
 
-  %tbody
-    - @jobs.each do |job|
-      %tr
-        %td= job.position
-        %td= job.business.name
-        %td= job.created_at
-        %td= link_to 'Show', job_path(job)
-        %td= link_to 'Edit', edit_job_path(job)
-        %td= link_to 'Destroy', job_path(job), method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 - if business_signed_in?

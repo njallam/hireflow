@@ -7,13 +7,13 @@
   .collapse.navbar-collapse#navbar
     .navbar-nav.ml-auto
       - if applicant_signed_in?
-        %a.nav-link{ href: jobs_path } Search
-        %a.nav-link{ href: applications_path } Applications
-        %a.nav-link{ href: edit_applicant_profile_path } Profile
+        %a.nav-link{ href: jobs_path, class: ('active' if params[:controller] == 'jobs') } Search
+        %a.nav-link{ href: applications_path, class: ('active' if params[:controller] == 'applications') } Applications
+        %a.nav-link{ href: edit_applicant_profile_path, class: ('active' if current_page? edit_applicant_profile_path) } Profile
       - elsif business_signed_in?
-        %a.nav-link{ href: jobs_path } Jobs
-        %a.nav-link{ href: applications_path } Applications
-        %a.nav-link{ href: edit_business_profile_path } Profile
+        %a.nav-link{ href: jobs_path, class: ('active' if params[:controller] == 'jobs') } Jobs
+        %a.nav-link{ href: applications_path, class: ('active' if params[:controller] == 'applications') } Applications
+        %a.nav-link{ href: edit_business_profile_path, class: ('active' if current_page? edit_business_profile_path) } Profile
       - else
         %a.nav-link.disabled{ href: '#' } About
       -# Account

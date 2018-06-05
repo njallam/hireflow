@@ -16,10 +16,10 @@
         = icon 'fas', 'file-alt', class: 'fa-3x'
     .steps-step-2
       %a.btn.step-2{ class: ('green' if @application.interviewed?) }
-        = icon 'fas', 'handshake', class: 'fa-3x'
+        = icon 'fas', 'building', class: 'fa-3x'
     .steps-step-2
-      %span.btn.step-2.mr-0{ class: ('green' if @application.accepted?) }
-        = icon 'fas', 'check', class: 'fa-3x'
+      %span.btn.step-2.mr-0{ class: (@application.accepted? ? 'green' : ('red' if @application.rejected?)) }
+        = icon 'fas', 'handshake', class: 'fa-3x'
 
 - if applicant_signed_in?
   - if @application.personal?
