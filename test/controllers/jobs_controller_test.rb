@@ -42,7 +42,7 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
     new_description = Faker::Lorem.paragraph
     patch job_url @job, params: { job: { position: new_position,
                                          description: new_description } }
-    @job = Job.find @job.id
+    @job.reload
     assert_equal new_position, @job.position
     assert_equal new_description, @job.description
     assert_redirected_to job_path @job

@@ -1,31 +1,11 @@
-.row.my-2
-  .col-md-3
-    .card
-      = image_tag 'shards.svg', class: 'img img-thumbnail', style: 'height: 222px'
-  .col-md-9
-    .card
-      .card-header
-        #{job.position} at #{job.business.name}
-      .card-body
-        .row
-          .col-md-6
-            %h5 Job Information
-            %table
-              %tr
-                %th Position:
-                %td= job.position
-              %tr
-                %th Description:
-                %td= job.description
-          .col-md-6
-            %h5 Business Information
-            %table
-              %tr
-                %th Business:
-                %td= job.business.name
-              %tr
-                %th City:
-                %td= job.business.city
-              %tr
-                %th Description:
-                %td= job.business.description
+.card
+  .card-header Job
+  .card-body
+    %h5.card-title #{job.position} at #{job.business.name}
+    %table.card-text
+      %tr
+        %th Position:
+        %td= job.position
+      %tr
+        %th Description:
+        %td= job.description

@@ -17,7 +17,7 @@ class AppliantsControllerTest < ActionDispatch::IntegrationTest
     new_last_name = Faker::Name.last_name
     patch applicant_profile_url, params: { applicant: { first_name: new_first_name,
                                                         last_name: new_last_name } }
-    @applicant = Applicant.find @applicant.id
+    @applicant.reload
     assert_equal new_first_name, @applicant.first_name
     assert_equal new_last_name, @applicant.last_name
     assert_redirected_to edit_applicant_profile_path
