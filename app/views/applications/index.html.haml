@@ -1,8 +1,24 @@
 %h2 Your Applications
-%ul
-- if applicant_signed_in?
-  - @applications.each do |application|
-    %li= link_to application.job.title, application
-- else
-  - @applications.each do |application|
-    %li= link_to "#{application.applicant.name} for #{application.job.position}", application
+.row
+  .col-md-12
+    .card
+      - @applications.each do |application|
+        .card
+          .card-body
+            .row
+              .col-auto.mr-2
+                - if applicant_signed_in?
+                  = image_tag 'shards.svg', class: 'img img-thumbnail', style: 'height: 100%'
+                - else
+                  = image_tag 'student.jpg', class: 'img img-thumbnail', style: 'height: 100px'
+              .col-md-8.flex-col
+                - if applicant_signed_in?
+                  %p.my-0= application.job.title
+                  %p.my-0= application.job.business.name
+                  %p.my-0= application.job.created_at.strftime('%d/%m/%Y')
+                - else
+                  %p.my-0= application.applicant.name
+                  %p.my-0= application.job.position
+                  %p.my-0= application.job.created_at.strftime('%d/%m/%Y')
+              .col-md-2
+                %a.btn.btn-primary{ href: application_path(application) } View

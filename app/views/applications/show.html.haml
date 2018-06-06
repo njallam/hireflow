@@ -6,47 +6,58 @@
       %span.btn.step-2.ml-0{ class: ('green' if @application.personaled?) }
         = icon 'fas', 'user-circle', class: 'fa-3x'
     .steps-step-2
-      %a.btn.step-2.ml-0{ class: ('green' if @application.covered?) }
+      %span.btn.step-2.ml-0{ class: ('green' if @application.covered?) }
         = icon 'fas', 'edit', class: 'fa-3x'
     .steps-step-2
-      %a.btn.step-2.ml-0{ class: ((@application.screened? ? 'green' : (@application.rejected? ? 'red' : 'yellow')) if @application.covered?) }
+      %span.btn.step-2.ml-0{ class: ((@application.screened? ? 'green' : (@application.rejected? ? 'red' : 'yellow')) if @application.covered?) }
         = icon 'fas', 'clock', class: 'fa-3x'
     -#
       .steps-step-2
       %a.btn.step-2
       = icon 'fas', 'file-alt', class: 'fa-3x'
     .steps-step-2
-      %a.btn.step-2{ class: (@application.interviewed? ? 'green' : 'yellow' if @application.screened?) }
+      %span.btn.step-2{ class: (@application.interviewed? ? 'green' : 'yellow' if @application.screened?) }
         = icon 'fas', 'handshake', class: 'fa-3x'
     .steps-step-2
       %span.btn.step-2.mr-0{ class: ((@application.accepted? ? 'green' : ('red' if @application.screened? && @application.rejected?))) }
         = icon 'fas', 'check', class: 'fa-3x'
 
 - if applicant_signed_in?
-  - if @application.personal?
-    .card
+  - if @application.personal? || @application.personaled?
+    .card.my-2
       .card-header
         Personal Information
       .card-body
         = render @application.applicant
       .card-footer
-        = link_to 'Confirm Details', confirm_application_path, method: :patch, class: 'btn btn-primary'
-  - if @application.cover?
-    .card
+        = link_to 'Confirm Details', confirm_application_path, method: :patch, class: 'btn btn-primary' if @application.personal?
+  - if @application.cover? || @application.covered?
+    .card.my-2
       .card-header
         Cover Letter
       .card-body
-        = simple_form_for @application do |f|
-          = f.error_notification
-          = f.input :cover_letter
-          = f.button :submit, 'Save'
-          = f.button :submit, 'Submit', class: 'btn-primary'
+        - if @application.cover?
+          = simple_form_for @application do |f|
+            = f.error_notification
+            = f.input :cover_letter
+            = f.button :submit, 'Save'
+            = f.button :submit, 'Submit', class: 'btn-primary'
+        - else
+          %p= @application.cover_letter
+      .card-footer
+  - if @application.screening?
+    .card.my-2
+      .card-header
+        Screening
+      .card-body
+        %p Please wait for the business to screen your application.
+      .card-footer
   - if @application.interview?
-    .card
+    .card.my-2
       .card-header
         Stage: #{@application.aasm_state}
       .card-body
-        %p Please wait for the business to respond to your application.
+        %p Interview placeholder
       .card-footer
   - if @application.accepted?
     .card
@@ -56,14 +67,14 @@
         %p You've been accepted for this position.
       .card-footer
 - if business_signed_in?
-  - if @application.personaled?
-    .card
+  - if @application.personal? || @application.personaled?
+    .card.my-2
       .card-header
         Applicant Information
       .card-body
         %p #{@application.applicant.name} applying for #{link_to @application.job.title, @application.job}
-  - if @application.covered?
-    .card
+  - if @application.cover? || @application.covered?
+    .card.my-2
       .card-header
         Cover Letter
       .card-body
@@ -71,8 +82,8 @@
       .card-footer
         = link_to 'Accept', accept_application_path, method: :patch, class: 'btn btn-success'
         = link_to 'Reject', reject_application_path, method: :patch, class: 'btn btn-danger'
-  - if @application.interviewed?
-    .card
+  - if @application.interview? || @application.interviewed?
+    .card.my-2
       .card-header
         Interview
       .card-body
@@ -81,7 +92,7 @@
         = link_to 'Accept', accept_application_path, method: :patch, class: 'btn btn-success'
         = link_to 'Reject', reject_application_path, method: :patch, class: 'btn btn-danger'
   - if @application.accepted?
-    .card
+    .card.my-2
       .card-header
         Offer
       .card-body
