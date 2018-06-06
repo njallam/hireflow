@@ -6,22 +6,26 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
     @job = create :job, business: @business
   end
 
+  # jobs#index
   test 'should allow viewing all jobs' do
     get jobs_url
     assert_response :success
   end
 
+  # jobs#show
   test 'should allow viewing a job' do
     get job_url @job
     assert_response :success
   end
 
+  # jobs#new
   test 'should allow making a new job' do
     sign_in @business
     get new_job_url
     assert_response :success
   end
 
+  # jobs#create
   test 'should allow creating a job as a business' do
     sign_in @business
     assert_difference 'Job.count', +1 do
@@ -41,6 +45,20 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_business_session_path
   end
 
+  # jobs#update
+  test 'should allow updating a job' do
+    sign_in @business
+    new_position = Faker::Job.title
+    new_description = Faker::Lorem.paragraph
+    patch job_url @job, params: { job: { position: new_position,
+                                         description: new_description } }
+    @job.reload
+    assert_equal new_position, @job.position
+    assert_equal new_description, @job.description
+    assert_redirected_to job_path @job
+  end
+
+  # jobs#destroy
   test 'should allow deleting a job as the business which ownes it' do
     sign_in @business
     assert_difference 'Job.count', -1 do
@@ -72,21 +90,10 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  # jobs#edit
   test 'should allow editing a job' do
     sign_in @business
     get edit_job_url @job
     assert_response :success
-  end
-
-  test 'should allow updating a job' do
-    sign_in @business
-    new_position = Faker::Job.title
-    new_description = Faker::Lorem.paragraph
-    patch job_url @job, params: { job: { position: new_position,
-                                         description: new_description } }
-    @job.reload
-    assert_equal new_position, @job.position
-    assert_equal new_description, @job.description
-    assert_redirected_to job_path @job
   end
 end

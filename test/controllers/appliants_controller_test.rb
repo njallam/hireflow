@@ -5,12 +5,25 @@ class AppliantsControllerTest < ActionDispatch::IntegrationTest
     @applicant = create :applicant
   end
 
+  # applicants#edit
   test 'should allow editing applicant profile' do
     sign_in @applicant
     get edit_applicant_profile_url
     assert_response :success
   end
 
+  test 'should not allow editing applicant profile as a business' do
+    sign_in create :business
+    get edit_applicant_profile_url
+    assert_redirected_to new_applicant_session_path
+  end
+
+  test 'should not allow editing applicant profile if not signed in' do
+    get edit_applicant_profile_url
+    assert_redirected_to new_applicant_session_path
+  end
+
+  # applicants#update
   test 'should allow updating applicant profile' do
     sign_in @applicant
     new_first_name = Faker::Name.first_name
@@ -23,8 +36,9 @@ class AppliantsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to edit_applicant_profile_path
   end
 
-  test 'should not allow editing applicant profile if not signed in' do
-    get edit_applicant_profile_url
+  test 'should not allow update applicant profile as a business' do
+    sign_in create :business
+    patch applicant_profile_url
     assert_redirected_to new_applicant_session_path
   end
 
