@@ -16,15 +16,15 @@
       %a.btn.step-2
       = icon 'fas', 'file-alt', class: 'fa-3x'
     .steps-step-2
-      %span.btn.step-2{ class: (@application.interviewed? ? 'green' : 'yellow' if @application.screened?) }
-        = icon 'fas', 'handshake', class: 'fa-3x'
+      %span.btn.step-2{ class: (@application.interviewed? ? 'green' : (@application.rejected? ? 'green' : 'yellow') if @application.screened?) }
+        = icon 'fas', 'building', class: 'fa-3x'
     .steps-step-2
       %span.btn.step-2.mr-0{ class: ((@application.accepted? ? 'green' : ('red' if @application.screened? && @application.rejected?))) }
-        = icon 'fas', 'check', class: 'fa-3x'
+        = icon 'fas', 'handshake', class: 'fa-3x'
 
 - if applicant_signed_in?
   - if @application.personal? || @application.personaled?
-    .card.my-2
+    .card.my-4
       .card-header
         Personal Information
       .card-body
@@ -32,7 +32,7 @@
       .card-footer
         = link_to 'Confirm Details', confirm_application_path, method: :patch, class: 'btn btn-primary' if @application.personal?
   - if @application.cover? || @application.covered?
-    .card.my-2
+    .card.my-4
       .card-header
         Cover Letter
       .card-body
@@ -45,17 +45,17 @@
         - else
           %p= @application.cover_letter
       .card-footer
-  - if @application.screening?
-    .card.my-2
+  - if @application.screening? && !@application.rejected?
+    .card.my-4
       .card-header
         Screening
       .card-body
         %p Please wait for the business to screen your application.
       .card-footer
-  - if @application.interview?
-    .card.my-2
+  - if @application.interview? && !@application.rejected?
+    .card.my-4
       .card-header
-        Stage: #{@application.aasm_state}
+        Interview
       .card-body
         %p Interview placeholder
       .card-footer
@@ -67,32 +67,37 @@
         %p You've been accepted for this position.
       .card-footer
 - if business_signed_in?
-  - if @application.personal? || @application.personaled?
-    .card.my-2
+  - if @application.personaled?
+    .card.my-4
       .card-header
         Applicant Information
       .card-body
         %p #{@application.applicant.name} applying for #{link_to @application.job.title, @application.job}
-  - if @application.cover? || @application.covered?
-    .card.my-2
+  - if @application.covered?
+    .card.my-4
       .card-header
         Cover Letter
       .card-body
         %p= @application.cover_letter
       .card-footer
+  - if @application.screening? && !@application.rejected?
+    .card.my-4
+      .card-header
+        Screening
+      .card-body
         = link_to 'Accept', accept_application_path, method: :patch, class: 'btn btn-success'
         = link_to 'Reject', reject_application_path, method: :patch, class: 'btn btn-danger'
-  - if @application.interview? || @application.interviewed?
-    .card.my-2
+  - if @application.interview? && !@application.rejected?
+    .card.my-4
       .card-header
         Interview
       .card-body
-        %p= @application.cover_letter
+        Interview placeholder
       .card-footer
         = link_to 'Accept', accept_application_path, method: :patch, class: 'btn btn-success'
         = link_to 'Reject', reject_application_path, method: :patch, class: 'btn btn-danger'
   - if @application.accepted?
-    .card.my-2
+    .card.my-4
       .card-header
         Offer
       .card-body

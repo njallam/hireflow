@@ -1,12 +1,13 @@
+%h2 Job Listing
 = render @job
+- if business_job? @job
+  = link_to 'Edit', edit_job_path(@job), class: 'btn btn-primary my-4'
 = render @job.business
 - unless business_signed_in?
   = link_to 'Apply', apply_job_path, method: :post, class: 'btn btn-primary'
-- if business_job? @job
-  = link_to 'Edit', edit_job_path(@job), class: 'btn btn-primary'
 
 - if business_job? @job
-  %h4 Applicants
-  %ul
-  - @job.applications.each do |application|
-    %li= link_to application.applicant.name, application
+  %h4.my-4 Applicants
+  .card.my-4
+    - @job.applications.each do |application|
+      = render application

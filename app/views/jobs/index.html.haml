@@ -2,6 +2,8 @@
 
 .row.my-4
   .col-md-3
+    - if business_signed_in?
+      = link_to 'Post New Job', new_job_path, class: 'btn btn-primary mb-4 btn-block'
     .card
       .card-header
         Your Filters
@@ -35,7 +37,3 @@
                 %p.my-0= job.created_at.strftime('%d/%m/%Y')
               .col-md-2
                 %a.btn.btn-primary{ href: job_path(job) } View
-
-%br
-- if business_signed_in?
-  = link_to 'New Job', new_job_path
