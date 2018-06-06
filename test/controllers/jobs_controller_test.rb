@@ -42,19 +42,34 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should allow deleting a job as the business which ownes it' do
-    # TODO
+    sign_in @business
+    assert_difference 'Job.count', -1 do
+      delete job_path @job
+      assert_redirected_to jobs_path
+    end
   end
 
   test 'should not allow deleting a job as a business which doesnt own it' do
-    # TODO
+    @other_business = create :business
+    sign_in @other_business
+    assert_no_difference 'Job.count' do
+      delete job_path @job
+      assert_redirected_to jobs_path
+    end
   end
 
   test 'should not allow deleting a job if not signed in' do
-    # TODO
+    assert_no_difference 'Job.count' do
+      delete job_path @job
+      assert_redirected_to new_business_session_path
+    end
   end
 
   test 'should not allow deleting a job if signed in as an applicant' do
-    # TODO
+    assert_no_difference 'Job.count' do
+      delete job_path @job
+      assert_redirected_to new_business_session_path
+    end
   end
 
   test 'should allow editing a job' do
