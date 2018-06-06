@@ -19,4 +19,14 @@ class BusinessesControllerTest < ActionDispatch::IntegrationTest
     assert_equal new_name, @business.name
     assert_redirected_to edit_business_profile_path
   end
+
+  test 'should not allow editing business profile if not signed in' do
+    get edit_business_profile_url
+    assert_redirected_to new_business_session_path
+  end
+
+  test 'should not allow update business profile if not signed in' do
+    patch business_profile_url
+    assert_redirected_to new_business_session_path
+  end
 end
