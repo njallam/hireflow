@@ -2,6 +2,7 @@ class ApplicationsController < ApplicationController
   before_action :set_application, only: %i[show confirm update accept reject]
   before_action :authenticate_viewer, only: %i[show confirm update]
   before_action :authenticate_viewer!, only: :index
+  before_action :authenticate_applicant!, only: :create
   before_action :redirect_business, only: %i[accept reject]
 
   def index
