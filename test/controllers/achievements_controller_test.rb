@@ -6,6 +6,7 @@ class AchievementsControllerTest < ActionDispatch::IntegrationTest
     @applicant = create :applicant
   end
 
+  # achievements#new
   test 'should allow making a new achievement as an applicant' do
     sign_in @applicant
     get new_applicant_profile_achievement_url
@@ -17,6 +18,14 @@ class AchievementsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_applicant_session_path
   end
 
+  # achievements#edit
+  test 'should allow editing an achievement as an applicant' do
+    sign_in @achievement.applicant
+    get edit_applicant_profile_achievement_url @achievement
+    assert_response :success
+  end
+
+  # achievements#create
   test 'should allow creating an achievement as an applicant' do
     sign_in @applicant
     assert_difference 'Achievement.count', +1 do
@@ -29,12 +38,7 @@ class AchievementsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to edit_applicant_profile_path
   end
 
-  test 'should allow editing an achievement as an applicant' do
-    sign_in @achievement.applicant
-    get edit_applicant_profile_achievement_url @achievement
-    assert_response :success
-  end
-
+  # achievements#update
   test 'should allow updating an achievement as an applicant' do
     sign_in @achievement.applicant
     patch applicant_profile_achievement_url @achievement, params: {
@@ -45,6 +49,7 @@ class AchievementsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to edit_applicant_profile_path
   end
 
+  # achievements#delete
   test 'should allow deleting an achievement as an applicant' do
     sign_in @achievement.applicant
     assert_difference 'Achievement.count', -1 do

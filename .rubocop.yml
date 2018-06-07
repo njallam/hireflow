@@ -26,6 +26,7 @@ Metrics/LineLength:
   Max: 100
   Exclude:
     - db/seeds.rb
+    - test/controllers/*
 
 Metrics/ClassLength:
   Exclude:

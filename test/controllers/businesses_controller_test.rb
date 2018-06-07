@@ -23,7 +23,7 @@ class BusinessesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_business_session_path
   end
 
-  # business#update
+  # businesses#update
   test 'should allow updating business profile' do
     sign_in @business
     new_name = Faker::Company.name

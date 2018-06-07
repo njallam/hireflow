@@ -3,6 +3,7 @@ require 'test_helper'
 class AppliantsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @applicant = create :applicant
+    @business = create :business
   end
 
   # applicants#edit
@@ -13,7 +14,7 @@ class AppliantsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should not allow editing applicant profile as a business' do
-    sign_in create :business
+    sign_in @business
     get edit_applicant_profile_url
     assert_redirected_to new_applicant_session_path
   end
@@ -37,7 +38,7 @@ class AppliantsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should not allow update applicant profile as a business' do
-    sign_in create :business
+    sign_in @business
     patch applicant_profile_url
     assert_redirected_to new_applicant_session_path
   end
