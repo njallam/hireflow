@@ -5,12 +5,25 @@ class BusinessesControllerTest < ActionDispatch::IntegrationTest
     @business = create :business
   end
 
+  # businesses#edit
   test 'should allow editing business profile' do
     sign_in @business
     get edit_business_profile_url
     assert_response :success
   end
 
+  test 'should not allow editing business profile as an applicant' do
+    sign_in create :applicant
+    get edit_business_profile_url
+    assert_redirected_to new_business_session_path
+  end
+
+  test 'should not allow editing business profile if not signed in' do
+    get edit_business_profile_url
+    assert_redirected_to new_business_session_path
+  end
+
+  # business#update
   test 'should allow updating business profile' do
     sign_in @business
     new_name = Faker::Company.name
@@ -18,5 +31,16 @@ class BusinessesControllerTest < ActionDispatch::IntegrationTest
     @business.reload
     assert_equal new_name, @business.name
     assert_redirected_to edit_business_profile_path
+  end
+
+  test 'should not allow update business profile as an applicant' do
+    sign_in create :applicant
+    patch business_profile_url
+    assert_redirected_to new_business_session_path
+  end
+
+  test 'should not allow update business profile if not signed in' do
+    patch business_profile_url
+    assert_redirected_to new_business_session_path
   end
 end
