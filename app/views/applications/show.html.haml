@@ -1,26 +1,6 @@
 %h2.mb-4 #{@application.applicant.name} applying for #{link_to @application.job.title, @application.job} (#{@application.aasm_state} stage)
 = render @application.job
-.steps-form-2.my-5
-  .steps-row-2.setup-panel-2.d-flex.justify-content-between
-    .steps-step-2
-      %span.btn.step-2.ml-0{ class: ('green' if @application.personaled?) }
-        = icon 'fas', 'user-circle', class: 'fa-3x'
-    .steps-step-2
-      %span.btn.step-2.ml-0{ class: ('green' if @application.covered?) }
-        = icon 'fas', 'edit', class: 'fa-3x'
-    .steps-step-2
-      %span.btn.step-2.ml-0{ class: ((@application.screened? ? 'green' : (@application.rejected? ? 'red' : 'yellow')) if @application.covered?) }
-        = icon 'fas', 'clock', class: 'fa-3x'
-    -#
-      .steps-step-2
-      %a.btn.step-2
-      = icon 'fas', 'file-alt', class: 'fa-3x'
-    .steps-step-2
-      %span.btn.step-2{ class: (@application.interviewed? ? 'green' : (@application.rejected? ? 'green' : 'yellow') if @application.screened?) }
-        = icon 'fas', 'building', class: 'fa-3x'
-    .steps-step-2
-      %span.btn.step-2.mr-0{ class: ((@application.accepted? ? 'green' : ('red' if @application.screened? && @application.rejected?))) }
-        = icon 'fas', 'handshake', class: 'fa-3x'
+= render 'circles'
 
 - if applicant_signed_in?
   - if @application.personal? || @application.personaled?
