@@ -7,6 +7,10 @@
   = f.input :university
   = f.button :submit
 
+%h3 Experience
+= render partial: 'experiences/experience', collection: @applicant.experiences
+= link_to 'New Achievement', new_applicant_profile_experience_path, class: 'btn btn-primary'
+
 %h3 Achievements
 = render partial: 'achievements/achievement', collection: @applicant.achievements
 = link_to 'New Achievement', new_applicant_profile_achievement_path, class: 'btn btn-primary'

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   scope :applicant do
     resource :profile, controller: 'applicants', as: 'applicant_profile', only: %i[edit update] do
       resources :achievements, only: %i[new create edit update destroy]
+      resources :experiences, only: %i[new create edit update destroy]
     end
   end
 

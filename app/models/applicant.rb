@@ -5,6 +5,7 @@ class Applicant < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :achievements, dependent: :destroy
+  has_many :experiences, dependent: :destroy
   has_many :applications, dependent: :destroy
 
   def name
