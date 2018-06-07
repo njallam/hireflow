@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_05_141021) do
+ActiveRecord::Schema.define(version: 2018_06_07_101413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "achievements", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.date "date"
+    t.bigint "applicant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["applicant_id"], name: "index_achievements_on_applicant_id"
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -97,6 +107,7 @@ ActiveRecord::Schema.define(version: 2018_06_05_141021) do
     t.index ["business_id"], name: "index_jobs_on_business_id"
   end
 
+  add_foreign_key "achievements", "applicants"
   add_foreign_key "applications", "applicants"
   add_foreign_key "applications", "jobs"
   add_foreign_key "jobs", "businesses"

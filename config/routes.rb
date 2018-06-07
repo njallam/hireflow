@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   end
 
   scope :applicant do
-    resource :profile, controller: 'applicants', as: 'applicant_profile', only: %i[edit update]
+    resource :profile, controller: 'applicants', as: 'applicant_profile', only: %i[edit update] do
+      resources :achievements, only: %i[new create edit update destroy]
+    end
   end
 
   scope :business do

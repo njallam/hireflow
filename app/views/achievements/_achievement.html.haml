@@ -1,0 +1,10 @@
+.card
+  .card-header Achievement
+  .card-body
+    %h5.card-title= achievement.title
+    .card-text
+      .date= achievement.date
+      .description= achievement.description
+    - if params[:controller] == 'applicants'
+      = link_to 'Edit', edit_applicant_profile_achievement_path(achievement), class: 'btn btn-warning'
+      = link_to 'Delete', applicant_profile_achievement_path(achievement), method: :delete, class: 'btn btn-danger'
