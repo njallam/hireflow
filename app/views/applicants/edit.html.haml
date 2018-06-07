@@ -1,7 +1,12 @@
 %h2 Edit Profile
+%h3 Personal Information
 = simple_form_for @applicant, url: applicant_profile_path do |f|
   = f.error_notification
   = f.input :first_name
   = f.input :last_name
   = f.input :university
   = f.button :submit
+
+%h3 Achievements
+= render partial: 'achievements/achievement', collection: @applicant.achievements
+= link_to 'New Achievement', new_applicant_profile_achievement_path, class: 'btn btn-primary'
