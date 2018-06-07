@@ -12,6 +12,7 @@ class Application < ApplicationRecord
     state :cover
     state :screening
     state :interview
+    state :offer
     state :accepted
 
     event :confirm do
@@ -23,7 +24,8 @@ class Application < ApplicationRecord
     event :accept do
       # TODO: guard
       transitions from: [:screening], to: :interview
-      transitions from: [:interview], to: :accepted
+      transitions from: [:interview], to: :offer
+      transitions from: [:offer], to: :accepted
     end
   end
 
@@ -53,6 +55,11 @@ class Application < ApplicationRecord
   end
 
   def interviewed?
+    offered? || offer?
+  end
+
+  def offered?
     accepted?
   end
+
 end

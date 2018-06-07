@@ -39,6 +39,15 @@
       .card-body
         %p Interview placeholder
       .card-footer
+  - if @application.offer? && !@application.rejected?
+    .card.my-4
+      .card-header
+        Offer
+      .card-body
+        %p= @application.offer
+      .card-footer
+        = link_to 'Accept Offer', accept_application_path, method: :patch, class: 'btn btn-success' if @application.offer
+        = link_to 'Reject Offer', reject_application_path, method: :patch, class: 'btn btn-danger' if @application.offer
   - if @application.accepted?
     .card
       .card-header
@@ -76,6 +85,16 @@
       .card-footer
         = link_to 'Accept', accept_application_path, method: :patch, class: 'btn btn-success'
         = link_to 'Reject', reject_application_path, method: :patch, class: 'btn btn-danger'
+  - if @application.offer? && !@application.rejected?
+    .card.my-4
+      .card-header
+        Submit an Offer
+      .card-body
+        = simple_form_for @application, url: application_path do |f|
+          = f.error_notification
+          = f.input :offer
+          = f.button :submit, 'Send Offer'
+      .card-footer
   - if @application.accepted?
     .card.my-4
       .card-header

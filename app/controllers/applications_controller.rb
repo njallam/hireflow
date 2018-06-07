@@ -1,11 +1,11 @@
 class ApplicationsController < ApplicationController
   before_action :set_application, only: %i[show confirm update accept reject]
-  before_action :authenticate_viewer, only: %i[show update]
+  before_action :authenticate_viewer, only: %i[show update reject]
   before_action :authenticate_viewer!, only: :index
   before_action :authenticate_applicant!, only: %i[create confirm]
-  before_action :authenticate_business!, only: %i[accept reject]
+  before_action :authenticate_business!, only: :accept
   before_action :redirect_applicant, only: :confirm
-  before_action :redirect_business, only: %i[accept reject]
+  before_action :redirect_business, only: :accept
 
   def index
     @applications = if applicant_signed_in?
@@ -38,6 +38,10 @@ class ApplicationsController < ApplicationController
       @application.submit! if params[:commit] == 'Submit'
     elsif @application.interview?
       # TODO
+    elsif @application.offer?
+      @application.update params.require(:application).permit(:offer)
+      flash[:notice] = 'Offer saved.'
+      @application.submit! if params[:commit] == 'Submit'
     end
     redirect_to @application
   end
