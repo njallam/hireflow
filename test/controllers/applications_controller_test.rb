@@ -129,7 +129,7 @@ class ApplicationsControllerTest < ActionDispatch::IntegrationTest
     sign_in application.job.business
     patch accept_application_path application
     application.reload
-    assert application.accepted?
+    assert application.offer?
     assert_redirected_to application_path application
   end
 
@@ -177,15 +177,19 @@ class ApplicationsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to jobs_path
   end
 
-  test 'should not be able to reject an application if signed in as an applicant' do
-    sign_in @application.applicant
-    patch reject_application_path @application
-    assert_redirected_to new_business_session_path
+  test 'should be able to reject an application at the offer stage as an applicant' do
+    application = create :application, aasm_state: 'offer'
+    sign_in application.applicant
+    patch reject_application_path application
+    application.reload
+    assert application.offer?
+    assert application.rejected?
+    assert_redirected_to application_path application
   end
 
   test 'should not be able to reject an application if not signed in' do
     patch reject_application_path @application
-    assert_redirected_to new_business_session_path
+    assert_redirected_to root_path
   end
 
   # applications#show
