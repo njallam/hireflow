@@ -52,7 +52,7 @@
       .card-header
         Applicant Information
       .card-body
-        %p #{@application.applicant.name} applying for #{link_to @application.job.title, @application.job}
+        = render @application.applicant
   - if @application.covered?
     .card.my-4
       .card-header

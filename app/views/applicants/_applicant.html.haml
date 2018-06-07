@@ -8,3 +8,10 @@
   %tr
     %th Email:
     %td= applicant.email
+  %tr
+    %th Experience:
+    %td= render partial: 'experiences/experience', collection: applicant.experiences
+  %tr
+    %th Achievements:
+    %td= render partial: 'achievements/achievement', collection: applicant.achievements
+

@@ -1,7 +1,7 @@
-business1 = Business.create email: 'business1@example.com', password: '123456', password_confirmation: '123456', name: 'Example Corp', city: 'London'
-business2 = Business.create email: 'business2@example.com', password: '123456', password_confirmation: '123456', name: 'Dummy Co.', city: 'Tring'
+business1 = Business.create email: 'business1@example.com', password: '123456', password_confirmation: '123456', name: 'Example Corp', description: 'Here at Example Corp, we pride ourselves on hiring the best new interns!', city: 'London'
+business2 = Business.create email: 'business2@example.com', password: '123456', password_confirmation: '123456', name: 'Dummy Co.', description: 'Here in Tring, we love startups! We hope that you apply for a position with us. Turning \'Applicants\' into \'Applicans\'!', city: 'Tring'
 
-applicant = Applicant.create email: 'applicant@example.com', password: '123456', password_confirmation: '123456', first_name: 'Bob', last_name: 'Smith'
+applicant = Applicant.create email: 'applicant@example.com', password: '123456', password_confirmation: '123456', first_name: 'Bob', last_name: 'Smith', university: 'Imperial College London'
 Achievement.create title: 'Duke of Edinburgh', date: '2012-05-15', applicant: applicant
 Experience.create place: 'BidFX', title: 'Code monkey', start_date: '2017-07-20', end_date: '2017-07-21', applicant: applicant
 
