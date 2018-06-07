@@ -23,7 +23,7 @@ system('bundle exec rails factory_bot:lint')
 error = true if $CHILD_STATUS.exitstatus.nonzero?
 
 puts '=========RAILS========'
-system('bundle exec rails test')
+system('bundle exec rails test -p')
 error = true if $CHILD_STATUS.exitstatus.nonzero?
 
 puts '======================'
