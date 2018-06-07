@@ -3,6 +3,45 @@
 = render 'circles'
 
 - if applicant_signed_in?
+  - if @application.screening? && !@application.rejected?
+    .card.my-4
+      .card-header
+        Screening
+      .card-body
+        %p Please wait for the business to screen your application.
+      .card-footer
+  - if @application.interview? && !@application.rejected?
+    .card.my-4
+      .card-header
+        Interview
+      .card-body
+        %p Interview placeholder
+      .card-footer
+  - if @application.offer?
+    - if @application.rejected?
+      .card.my-4
+        .card-header
+          Offer
+        .card-body
+          %p= @application.offer
+          %p You have rejected this offer.
+        .card-footer
+    - else
+      .card.my-4
+        .card-header
+          Offer
+        .card-body
+          %p= @application.offer
+        .card-footer
+          = link_to 'Accept Offer', accept_application_path, method: :patch, class: 'btn btn-success' if @application.offer
+          = link_to 'Reject Offer', reject_application_path, method: :patch, class: 'btn btn-danger' if @application.offer
+  - if @application.accepted?
+    .card
+      .card-header
+        Offer
+      .card-body
+        %p You've been accepted for this position.
+      .card-footer
   - if @application.personal? || @application.personaled?
     .card.my-4
       .card-header
@@ -25,50 +64,7 @@
         - else
           %p= @application.cover_letter
       .card-footer
-  - if @application.screening? && !@application.rejected?
-    .card.my-4
-      .card-header
-        Screening
-      .card-body
-        %p Please wait for the business to screen your application.
-      .card-footer
-  - if @application.interview? && !@application.rejected?
-    .card.my-4
-      .card-header
-        Interview
-      .card-body
-        %p Interview placeholder
-      .card-footer
-  - if @application.offer? && !@application.rejected?
-    .card.my-4
-      .card-header
-        Offer
-      .card-body
-        %p= @application.offer
-      .card-footer
-        = link_to 'Accept Offer', accept_application_path, method: :patch, class: 'btn btn-success' if @application.offer
-        = link_to 'Reject Offer', reject_application_path, method: :patch, class: 'btn btn-danger' if @application.offer
-  - if @application.accepted?
-    .card
-      .card-header
-        Offer
-      .card-body
-        %p You've been accepted for this position.
-      .card-footer
 - if business_signed_in?
-  - if @application.personaled?
-    .card.my-4
-      .card-header
-        Applicant Information
-      .card-body
-        = render @application.applicant
-  - if @application.covered?
-    .card.my-4
-      .card-header
-        Cover Letter
-      .card-body
-        %p= @application.cover_letter
-      .card-footer
   - if @application.screening? && !@application.rejected?
     .card.my-4
       .card-header
@@ -85,20 +81,42 @@
       .card-footer
         = link_to 'Accept', accept_application_path, method: :patch, class: 'btn btn-success'
         = link_to 'Reject', reject_application_path, method: :patch, class: 'btn btn-danger'
-  - if @application.offer? && !@application.rejected?
-    .card.my-4
-      .card-header
-        Submit an Offer
-      .card-body
-        = simple_form_for @application, url: application_path do |f|
-          = f.error_notification
-          = f.input :offer
-          = f.button :submit, 'Send Offer'
-      .card-footer
+  - if @application.offer?
+    - if @application.rejected?
+      .card.my-4
+        .card-header
+          Offer
+        .card-body
+          %p= @application.offer
+          %p #{@application.applicant.name} has rejected this offer.
+        .card-footer
+    - else
+      .card.my-4
+        .card-header
+          Submit an Offer
+        .card-body
+          = simple_form_for @application, url: application_path do |f|
+            = f.error_notification
+            = f.input :offer
+            = f.button :submit, 'Send Offer'
+        .card-footer
   - if @application.accepted?
     .card.my-4
       .card-header
         Offer
       .card-body
         %p You have accepted #{@application.applicant.name} for this position.
+      .card-footer
+  - if @application.personaled?
+    .card.my-4
+      .card-header
+        Applicant Information
+      .card-body
+        = render @application.applicant
+  - if @application.covered?
+    .card.my-4
+      .card-header
+        Cover Letter
+      .card-body
+        %p= @application.cover_letter
       .card-footer
