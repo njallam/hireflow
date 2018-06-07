@@ -6,7 +6,7 @@
           = image_tag 'shards.svg', class: 'img img-thumbnail', style: 'height: 100%'
         - else
           = image_tag 'student.jpg', class: 'img img-thumbnail', style: 'height: 100px'
-      .col-md-8.flex-col
+      .col-md-4.flex-col
         - if applicant_signed_in?
           %p.my-0= application.job.title
           %p.my-0= application.job.business.name
@@ -15,5 +15,7 @@
           %p.my-0= application.applicant.name
           %p.my-0= application.job.position
           %p.my-0= application.job.created_at.strftime('%d/%m/%Y')
+      .col-md-4
+        %p Application Stage: #{application.aasm_state}
       .col-md-2
-        %a.btn.btn-primary{ href: application_path(application) } View
+        %a.btn.btn-primary.my-4{ href: application_path(application) } View
