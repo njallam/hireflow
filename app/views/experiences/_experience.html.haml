@@ -3,7 +3,8 @@
   .card-body
     %h5.card-title= experience.title
     .card-text
-      .date= experience.date
+      .start_date= experience.start_date
+      .end_date= experience.end_date
       .description= experience.description
     - if params[:controller] == 'applicants'
       = link_to 'Edit', edit_applicant_profile_experience_path(experience), class: 'btn btn-warning'
