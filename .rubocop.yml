@@ -27,6 +27,10 @@ Metrics/LineLength:
   Exclude:
     - db/seeds.rb
 
+Metrics/ClassLength:
+  Exclude:
+    - test/controllers/*
+
 Style/ClassAndModuleChildren:
   Enabled: false
 

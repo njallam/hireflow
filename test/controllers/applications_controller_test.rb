@@ -76,6 +76,7 @@ class ApplicationsControllerTest < ActionDispatch::IntegrationTest
     patch application_path @application, params: { application:
                                                  { cover_letter: cover_letter } }
     @application.reload
+    assert_redirected_to application_path @application
     assert_equal cover_letter, @application.cover_letter
   end
 
