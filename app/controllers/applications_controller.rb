@@ -32,16 +32,12 @@ class ApplicationsController < ApplicationController
   end
 
   def update
+    @application.update params.require(:application).permit(:cover_letter)
+    @application.submit! if params[:commit] == 'Submit'
     if @application.cover?
-      @application.update params.require(:application).permit(:cover_letter)
       flash[:notice] = 'Cover letter saved.'
-      @application.submit! if params[:commit] == 'Submit'
-    elsif @application.interview?
-      # TODO
     elsif @application.offer?
-      @application.update params.require(:application).permit(:offer)
       flash[:notice] = 'Offer saved.'
-      @application.submit! if params[:commit] == 'Submit'
     end
     redirect_to @application
   end

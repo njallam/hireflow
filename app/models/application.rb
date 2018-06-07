@@ -61,5 +61,4 @@ class Application < ApplicationRecord
   def offered?
     accepted?
   end
-
 end
