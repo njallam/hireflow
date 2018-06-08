@@ -1,11 +1,11 @@
 .card.my-4
-  .card-header Experience
   .card-body
     %h5.card-title= experience.title
     .card-text
       .start_date= experience.start_date
       .end_date= experience.end_date
       .description= experience.description
-    - if params[:controller] == 'applicants'
+  - if params[:controller] == 'applicants'
+    .card-footer
       = link_to 'Edit', edit_applicant_profile_experience_path(experience), class: 'btn btn-warning'
       = link_to 'Delete', applicant_profile_experience_path(experience), method: :delete, class: 'btn btn-danger'

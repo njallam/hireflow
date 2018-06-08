@@ -1,5 +1,4 @@
 .card.my-4
-  .card-header Education
   .card-body
     %h5.card-title= education.place
     .card-text
@@ -7,6 +6,7 @@
       .end_date= education.end_date
     .list-group.list-group-flush
       = render partial: 'subjects/subject', collection: education.subjects, locals: { education: education }
-    - if params[:controller] == 'applicants'
+  - if params[:controller] == 'applicants'
+    .card-footer
       = link_to 'Edit', edit_applicant_profile_education_path(education), class: 'btn btn-warning'
       = link_to 'Delete', applicant_profile_education_path(education), method: :delete, class: 'btn btn-danger'
