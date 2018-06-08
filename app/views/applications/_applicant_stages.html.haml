@@ -10,7 +10,7 @@
     .card-header
       Interview
     .card-body
-      %p Interview placeholder
+      %p= application.interview_message
     .card-footer
 - if application.offer?
   - if application.rejected?
@@ -27,9 +27,10 @@
         Offer
       .card-body
         %p= application.offer
-      .card-footer
-        = link_to 'Accept Offer', accept_application_path, method: :patch, class: 'btn btn-success' if application.offer
-        = link_to 'Reject Offer', reject_application_path, method: :patch, class: 'btn btn-danger' if application.offer
+        -#
+          .card-footer
+            = link_to 'Accept Offer', accept_application_path, method: :patch, class: 'btn btn-success' if application.offer
+            = link_to 'Reject Offer', reject_application_path, method: :patch, class: 'btn btn-danger' if application.offer
 - if application.accepted?
   .card
     .card-header

@@ -8,9 +8,12 @@
 - if application.interview? && !application.rejected?
   .card.my-4
     .card-header
-      Interview
+      Interview Offer
     .card-body
-      Interview placeholder
+      = simple_form_for application, url: application_path do |f|
+        = f.error_notification
+        = f.input :interview_message
+        = f.button :submit, 'Send Interview Offer'
     .card-footer
       = link_to 'Accept', accept_application_path, method: :patch, class: 'btn btn-success'
       = link_to 'Reject', reject_application_path, method: :patch, class: 'btn btn-danger'

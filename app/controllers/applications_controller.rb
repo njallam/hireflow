@@ -32,13 +32,11 @@ class ApplicationsController < ApplicationController
   end
 
   def update
-    @application.update params.require(:application).permit(:cover_letter)
-    @application.submit! if params[:commit] == 'Submit'
-    if @application.cover?
-      flash[:notice] = 'Cover letter saved.'
-    elsif @application.offer?
-      flash[:notice] = 'Offer saved.'
+    if @application.cover? then save_element :cover_letter, 'Cover letter saved'
+    elsif @application.interview? then save_element :interview_message, 'Interview offer saved'
+    elsif @application.offer? then save_element :offer, 'Offer saved'
     end
+    @application.submit! if params[:commit] == 'Submit'
     redirect_to @application
   end
 
@@ -55,6 +53,11 @@ class ApplicationsController < ApplicationController
   def show; end
 
   private
+
+  def save_element(param, message)
+    @application.update params.require(:application).permit(param)
+    flash[:notice] = message
+  end
 
   def authenticate_viewer
     if applicant_signed_in?
