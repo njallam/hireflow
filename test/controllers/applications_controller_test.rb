@@ -76,12 +76,12 @@ class ApplicationsControllerTest < ActionDispatch::IntegrationTest
   test 'should not be able to confirm an application as a business' do
     sign_in @application.job.business
     patch confirm_application_path @application
-    assert_redirected_to new_applicant_session_path
+    assert_redirected_to application_path @application
   end
 
   test 'should not be able to confirm an application if you arent signed in' do
     patch confirm_application_path @application
-    assert_redirected_to new_applicant_session_path
+    assert_redirected_to root_path
   end
 
   # applications#update
@@ -106,7 +106,7 @@ class ApplicationsControllerTest < ActionDispatch::IntegrationTest
   test 'should not be able to update an application that isnt yours as a business' do
     sign_in @business
     patch application_path @application
-    assert_redirected_to jobs_path
+    assert_redirected_to applications_path
   end
 
   test 'should not be able to update an application if not signed in' do
@@ -136,18 +136,18 @@ class ApplicationsControllerTest < ActionDispatch::IntegrationTest
   test 'should not be able to accept an application if the job doesnt belong to you' do
     sign_in @business
     patch accept_application_path @application
-    assert_redirected_to jobs_path
+    assert_redirected_to applications_path
   end
 
   test 'should not be able to accept an application if signed in as an applicant' do
     sign_in @application.applicant
     patch accept_application_path @application
-    assert_redirected_to new_business_session_path
+    assert_redirected_to application_path @application
   end
 
   test 'should not be able to accept an application if not signed in' do
     patch accept_application_path @application
-    assert_redirected_to new_business_session_path
+    assert_redirected_to root_path
   end
 
   # applications#reject
@@ -174,7 +174,7 @@ class ApplicationsControllerTest < ActionDispatch::IntegrationTest
   test 'should not be able to reject an application if the job doesnt belong to you' do
     sign_in @business
     patch reject_application_path @application
-    assert_redirected_to jobs_path
+    assert_redirected_to applications_path
   end
 
   test 'should be able to reject an application at the offer stage as an applicant' do
@@ -214,7 +214,7 @@ class ApplicationsControllerTest < ActionDispatch::IntegrationTest
   test 'should not show the status of an application that isnt yours as a business' do
     sign_in @business
     get application_path @application
-    assert_redirected_to jobs_path
+    assert_redirected_to applications_path
   end
 
   test 'should now show the status of an application if not signed in' do

@@ -1,5 +1,6 @@
 class Application < ApplicationRecord
   include AASM
+  include Devise::Controllers::Helpers
 
   belongs_to :job
   belongs_to :applicant
@@ -7,7 +8,7 @@ class Application < ApplicationRecord
   validates_associated :applicant
   validates :applicant, uniqueness: { scope: :job }
 
-  aasm do
+  aasm whiny_transitions: false do
     state :personal, intial: true
     state :cover
     state :screening
@@ -16,16 +17,15 @@ class Application < ApplicationRecord
     state :accepted
 
     event :confirm do
-      transitions from: [:personal], to: :cover
+      transitions from: [:personal], to: :cover, guard: :applicant?
     end
     event :submit do
-      transitions from: [:cover], to: :screening
+      transitions from: [:cover], to: :screening, guard: :applicant?
     end
     event :accept do
-      # TODO: guard
-      transitions from: [:screening], to: :interview
-      transitions from: [:interview], to: :offer
-      transitions from: [:offer], to: :accepted
+      transitions from: [:screening], to: :interview, guard: :business?
+      transitions from: [:interview], to: :offer, guard: :business?
+      transitions from: [:offer], to: :accepted, guard: :applicant?
     end
   end
 
@@ -34,8 +34,7 @@ class Application < ApplicationRecord
   end
 
   def reject!
-    reject
-    save
+    reject && save
   end
 
   def find_existing
@@ -60,5 +59,15 @@ class Application < ApplicationRecord
 
   def offered?
     accepted?
+  end
+
+  private
+
+  def applicant?(bool)
+    bool
+  end
+
+  def business?(bool)
+    !bool
   end
 end

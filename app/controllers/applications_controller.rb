@@ -1,17 +1,11 @@
 class ApplicationsController < ApplicationController
-  before_action :set_application, only: %i[show confirm update accept reject]
-  before_action :authenticate_viewer, only: %i[show update reject]
-  before_action :authenticate_viewer!, only: :index
-  before_action :authenticate_applicant!, only: %i[create confirm]
-  before_action :authenticate_business!, only: :accept
-  before_action :redirect_applicant, only: :confirm
-  before_action :redirect_business, only: :accept
+  before_action :set_application, except: %i[index create]
+  before_action :authenticate_applicant!, only: :create
+  before_action :authenticate_viewer, except: :create
 
   def index
-    @applications = if applicant_signed_in?
-                      current_applicant.applications
-                    else
-                      current_business.applications
+    @applications = if applicant_signed_in? then current_applicant.applications
+                    else current_business.applications
                     end
   end
 
@@ -27,7 +21,7 @@ class ApplicationsController < ApplicationController
   end
 
   def confirm
-    @application.confirm!
+    @application.confirm! applicant_signed_in?
     redirect_to @application
   end
 
@@ -36,12 +30,13 @@ class ApplicationsController < ApplicationController
     elsif @application.interview? then save_element :interview_message, 'Interview offer saved'
     elsif @application.offer? then save_element :offer, 'Offer saved'
     end
-    @application.submit! if params[:commit] == 'Submit'
+    # TODO: limit wchich type of user can do what
+    @application.submit! applicant_signed_in? if params[:commit] == 'Submit'
     redirect_to @application
   end
 
   def accept
-    @application.accept!
+    @application.accept! applicant_signed_in?
     redirect_to @application
   end
 
@@ -60,18 +55,10 @@ class ApplicationsController < ApplicationController
   end
 
   def authenticate_viewer
-    if applicant_signed_in?
-      redirect_applicant
-    elsif business_signed_in?
-      redirect_business
-    else
-      redirect_to root_url, alert: 'You must be signed in to view an application.'
+    if applicant_signed_in? then redirect_applicant if @application
+    elsif business_signed_in? then redirect_business if @application
+    else redirect_to root_url, alert: 'You must be signed in to view an application.'
     end
-  end
-
-  def authenticate_viewer!
-    redirect_to root_url, alert: 'You must be signed in to view an application.' unless
-      applicant_signed_in? || business_signed_in?
   end
 
   def set_application
@@ -83,6 +70,6 @@ class ApplicationsController < ApplicationController
   end
 
   def redirect_business
-    redirect_to jobs_path unless @application.job.business == current_business
+    redirect_to applications_path unless @application.job.business == current_business
   end
 end
