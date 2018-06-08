@@ -6,6 +6,7 @@ class Applicant < ApplicationRecord
 
   has_many :achievements, dependent: :destroy
   has_many :experiences, dependent: :destroy
+  has_many :education, dependent: :destroy
   has_many :applications, dependent: :destroy
 
   def name

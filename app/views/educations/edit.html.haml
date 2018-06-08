@@ -1,0 +1,16 @@
+%h1 Editing education
+
+= simple_form_for @education, url: applicant_profile_education_path do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :place
+    = f.input :start_date
+    = f.input :end_date
+
+  .form-actions
+    = f.button :submit
+    = link_to 'New Subject', new_applicant_profile_education_subject_path(@education), class: 'btn btn-primary'
+
+= link_to 'Back', edit_applicant_profile_path
