@@ -1,40 +1,51 @@
-#header.p-5
+.p-5#header
   .background-overlay
   .row
     .col-md-6.p-5
       %h1 Pipeline Your Applications
       %p.lead.font-weight-normal Our mission is to connect new startups with candidates looking for opportunities at places where they can make a difference and to simplify the application process for both sides.
       .btn-toolbar
-        %a.btn#sign-up-button.mr-3.mt-2{ href: new_business_registration_path } Hire
-        %a.btn#sign-in-button.ml-3.mt-2{ href: new_applicant_registration_path } Apply
+        %a.btn.mr-3.mt-2#sign-up-button{ href: new_business_registration_path } Hire
+        %a.btn.ml-3.mt-2#sign-in-button{ href: new_applicant_registration_path } Apply
     .col-md-6.p-5.text-center
       = image_tag 'Graphic.png'
 .separator.bg-light.text-center.p-5
   %h2.mb-5 How can HireFlow help you?
   %nav.nav.nav-pills.nav-justified
-    %a.nav-item.nav-link.active{:href => "#"} I'm a Recruiter
-    %a.nav-item.nav-link{:href => "#"} I'm an Applicant
+    %a.nav-item.nav-link.active{ href: '#features-business', 'data-target': '#features-business', 'data-toggle': 'tab' } I'm a Recruiter
+    %a.nav-item.nav-link{ href: '#features-applicant', 'data-target': '#features-applicant', 'data-toggle': 'tab' } I'm an Applicant
 
-#features
-  .row
-    .col-md-6
-      %h3 Hello
+.tab-content#features
+  .tab-pane.fade.active#features-business
+    .row
+      .col-md-6
+        %h3 Applicant
+      .col-md-6
+    .row
+      .col-md-6
+      .col-md-6
+        %h3 Applicant
+    .row
+      .col-md-6
+        %h3 Applicant
+      .col-md-6
+  .tab-pane.fade#features-applicant
+    .row
+      .col-md-6
+        %h3 Business
+      .col-md-6
+    .row
+      .col-md-6
+      .col-md-6
+        %h3 Business
+    .row
+      .col-md-6
+        %h3 Business
+      .col-md-6
 
-    .col-md-6
-  .row.bg-light
-    .col-md-6
-
-    .col-md-6
-      %h3 Hello
-  .row
-    .col-md-6
-      %h3 Hello
-
-    .col-md-6
-
-#steps.bg-light.text-center
+.bg-light.text-center#steps
   %h3 3 Easy Steps!
 
 %footer.footer
   %p Template
-  %a{ href: '#'} Back to top
+  %a{ href: '#' } Back to top
