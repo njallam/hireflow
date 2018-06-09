@@ -4,14 +4,12 @@
       Screening
     .card-body
       %p Please wait for the business to screen your application.
-    .card-footer
 - if application.interview? && !application.rejected?
   .card.my-4
     .card-header
       Interview
     .card-body
       %p= application.interview_message
-    .card-footer
 - if application.offer?
   - if application.rejected?
     .card.my-4
@@ -20,7 +18,6 @@
       .card-body
         %p= application.offer
         %p You have rejected this offer.
-      .card-footer
   - else
     .card.my-4
       .card-header
@@ -28,24 +25,25 @@
       .card-body
         %p= application.offer
         -#
-          .card-footer
-            = link_to 'Accept Offer', accept_application_path, method: :patch, class: 'btn btn-success' if application.offer
-            = link_to 'Reject Offer', reject_application_path, method: :patch, class: 'btn btn-danger' if application.offer
+          - if application.offer
+            .card-footer
+              = link_to 'Accept Offer', accept_application_path, method: :patch, class: 'btn btn-success'
+              = link_to 'Reject Offer', reject_application_path, method: :patch, class: 'btn btn-danger'
 - if application.accepted?
   .card
     .card-header
       Offer
     .card-body
       %p You've been accepted for this position.
-    .card-footer
 - if application.personal? || application.personaled?
   .card.my-4
     .card-header
       Personal Information
     .card-body
       = render application.applicant
-    .card-footer
-      = link_to 'Confirm Details', confirm_application_path, method: :patch, class: 'btn btn-primary' if application.personal?
+    - if application.personal?
+      .card-footer
+        = link_to 'Confirm Details', confirm_application_path, method: :patch, class: 'btn btn-primary'
 - if application.cover? || application.covered?
   .card.my-4
     .card-header
@@ -59,4 +57,3 @@
           = f.button :submit, 'Submit', class: 'btn-primary'
       - else
         %p= application.cover_letter
-    .card-footer
