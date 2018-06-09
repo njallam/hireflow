@@ -6,15 +6,11 @@
   = f.input :last_name
   = f.button :submit, 'Update Profile', class: 'btn btn-primary mb-4'
 
-%h3 Education
-= render partial: 'educations/education', collection: @applicant.education
+= render partial: 'educations/educations', locals: { educations: @applicant.educations }
 = link_to 'New Education', new_applicant_profile_education_path, class: 'btn btn-primary mb-4'
 
-
-%h3 Experience
-= render partial: 'experiences/experience', collection: @applicant.experiences
+= render partial: 'experiences/experiences', locals: { experiences: @applicant.experiences }
 = link_to 'New Experience', new_applicant_profile_experience_path, class: 'btn btn-primary mb-4'
 
-%h3 Achievements
-= render partial: 'achievements/achievement', collection: @applicant.achievements
+= render partial: 'achievements/achievements', locals: { achievements: @applicant.achievements }
 = link_to 'New Achievement', new_applicant_profile_achievement_path, class: 'btn btn-primary mb-4'
