@@ -1,5 +1,5 @@
 .list-group-item
   #{subject.title} - #{subject.result}
   - if params[:controller] == 'applicants'
-    = link_to 'Edit', edit_applicant_profile_education_subject_path(education, subject), class: 'btn btn-warning'
-    = link_to 'Delete', applicant_profile_education_subject_path(education, subject), method: :delete, class: 'btn btn-danger'
+    = link_to 'Edit', edit_applicant_profile_education_subject_path(education, subject), class: 'btn btn-warning btn-sm'
+    = link_to 'Delete', applicant_profile_education_subject_path(education, subject), method: :delete, class: 'btn btn-danger btn-sm'

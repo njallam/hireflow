@@ -2,9 +2,9 @@
   .card-body
     %h5.card-title= experience.title
     .card-text
-      .text-muted #{experience.start_date} &ndash; #{experience.end_date} &bullet; #{distance_of_time_in_words experience.start_date, experience.end_date} &bullet; #{time_ago_in_words experience.end_date} ago
+      .text-muted #{experience.start_date} &ndash; for #{experience.end_date} &bullet; #{distance_of_time_in_words experience.start_date, experience.end_date} &bullet; #{time_ago_in_words experience.end_date} ago
       = experience.description
   - if params[:controller] == 'applicants'
     .card-footer
-      = link_to 'Edit', edit_applicant_profile_experience_path(experience), class: 'btn btn-warning'
-      = link_to 'Delete', applicant_profile_experience_path(experience), method: :delete, class: 'btn btn-danger'
+      = link_to 'Edit', edit_applicant_profile_experience_path(experience), class: 'btn btn-warning btn-sm'
+      = link_to 'Delete', applicant_profile_experience_path(experience), method: :delete, class: 'btn btn-danger btn-sm'

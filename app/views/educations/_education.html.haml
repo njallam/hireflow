@@ -2,11 +2,11 @@
   .card-body
     %h5.card-title= education.place
     .card-text
-      .text-muted #{education.start_date} &ndash; #{education.end_date} &bullet; #{distance_of_time_in_words education.start_date, education.end_date} &bullet; #{time_ago_in_words education.end_date} ago
+      .text-muted #{education.start_date} &ndash; #{education.end_date} &bullet; for #{distance_of_time_in_words education.start_date, education.end_date} &bullet; #{time_ago_in_words education.end_date} ago
     .list-group.list-group-flush
       = render partial: 'subjects/subject', collection: education.subjects, locals: { education: education }
   - if params[:controller] == 'applicants'
     .card-footer
-      = link_to 'Add', new_applicant_profile_education_subject_path(education), class: 'btn btn-primary'
-      = link_to 'Edit', edit_applicant_profile_education_path(education), class: 'btn btn-warning'
-      = link_to 'Delete', applicant_profile_education_path(education), method: :delete, class: 'btn btn-danger'
+      = link_to 'Add', new_applicant_profile_education_subject_path(education), class: 'btn btn-primary btn-sm'
+      = link_to 'Edit', edit_applicant_profile_education_path(education), class: 'btn btn-warning btn-sm'
+      = link_to 'Delete', applicant_profile_education_path(education), method: :delete, class: 'btn btn-danger btn-sm'

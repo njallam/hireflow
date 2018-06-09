@@ -6,6 +6,9 @@
     %th Email:
     %td= applicant.email
   %tr
+    %th Education:
+    %td= render partial: 'educations/education', collection: applicant.education
+  %tr
     %th Experience:
     %td= render partial: 'experiences/experience', collection: applicant.experiences
   %tr
