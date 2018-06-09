@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 @import "custom";
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 .container {
   padding-top: 1rem;
@@ -7,5 +10,3 @@
 
 @import "navbar";
 @import "applications";
-@import "font-awesome-sprockets";
-@import "font-awesome";
