@@ -1,21 +1,40 @@
-.bg-light
-  .col-md-5.p-lg-5.mx-auto.my-5.text-center
-    %h1.display-4.font-weight-normal HireFlow
-    %p.lead.font-weight-normal Our mission is to connect new startups with candidates looking for opportunities at places where they can make a difference and to simplify the application process for both sides.
-    %a.btn.btn-outline-secondary Coming soon
-.d-md-flex.flex-md-equal.w-100.my-md-3.pl-md-3
-  .bg-light.mr-md-3.pt-3.px-3.pt-md-5.px-md-5.text-center
-    .my-3.p-3
-      %h2.display-5 Quick
-      %p.lead The simplicity of our process makes it simple.
-    .bg-dark.box-shadow.mx-auto
-  .bg-dark.mr-md-3.pt-3.px-3.pt-md-5.px-md-5.text-center.text-white
-    .my-3.py-3
-      %h2.display-5 Streamlined
-      %p.lead Every application has a structured flow to it.
-    .bg-light.box-shadow.mx-auto
-  .bg-light.mr-md-3.pt-3.px-3.pt-md-5.px-md-5.text-center
-    .my-3.p-3
-      %h2.display-5 Simple
-      %p.lead HireFlow makes managing many applications simple.
-    .bg-dark.box-shadow.mx-auto
+#header.p-5
+  .background-overlay
+  .row
+    .col-md-6.p-5
+      %h1 Pipeline Your Applications
+      %p.lead.font-weight-normal Our mission is to connect new startups with candidates looking for opportunities at places where they can make a difference and to simplify the application process for both sides.
+      .btn-toolbar
+        %a.btn#sign-up-button.mr-3.mt-2{ href: new_business_registration_path } Hire
+        %a.btn#sign-in-button.ml-3.mt-2{ href: new_applicant_registration_path } Apply
+    .col-md-6.p-5.text-center
+      = image_tag 'Graphic.png'
+.separator.bg-light.text-center.p-5
+  %h2.mb-5 How can HireFlow help you?
+  %nav.nav.nav-pills.nav-justified
+    %a.nav-item.nav-link.active{:href => "#"} I'm a Recruiter
+    %a.nav-item.nav-link{:href => "#"} I'm an Applicant
+
+#features
+  .row
+    .col-md-6
+      %h3 Hello
+
+    .col-md-6
+  .row.bg-light
+    .col-md-6
+
+    .col-md-6
+      %h3 Hello
+  .row
+    .col-md-6
+      %h3 Hello
+
+    .col-md-6
+
+#steps.bg-light.text-center
+  %h3 3 Easy Steps!
+
+%footer.footer
+  %p Template
+  %a{ href: '#'} Back to top

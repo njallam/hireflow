@@ -1,3 +1,81 @@
 // Place all the styles related to the Welcome controller here.
 // They will automatically be included in application.scss.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#header {
+  .row {
+    .col-md-6 {
+      align-items: center;
+
+      h1 {
+        color: #FFFFFF;
+        font-size: 4.5rem;
+        margin-top: 12vh;
+      }
+
+      p {
+        color: #E0E0E0;
+        font-size: 1.3rem;
+      }
+
+      #sign-up-button {
+        background-color: #1DB777;
+        color: #FFFFFF;
+        font-size: 1.3rem;
+        border-radius: 40px;
+        padding-left: 3rem;
+        padding-right: 3rem;
+        border: 1px solid #FFFFFF
+      }
+
+      #sign-up-button:hover {
+        background-color: #219653;
+      }
+
+      #sign-in-button {
+        background-color: #FFFFFF;
+        color: #1DB777;
+        font-size: 1.3rem;
+        border-radius: 40px;
+        padding-left: 3rem;
+        padding-right: 3rem;
+        border: 1px solid #1DB777;
+      }
+
+      #sign-in-button:hover {
+        background-color: lightgrey;
+      }
+
+      img {
+        width: 100%;
+        position: relative;
+        margin-top: 12vh;
+      }
+    }
+  }
+  .background-overlay {
+    background-color: rgba(33, 37, 41, 0.9);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  background: image-url('landing-cover-photo.png') no-repeat;
+  background-size: cover;
+  min-height: 90vh;
+}
+
+.separator {
+
+}
+
+.footer {
+  padding: 2.5rem 0;
+  color: #999;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-top: .05rem solid #e5e5e5;
+}
+.footer p:last-child {
+  margin-bottom: 0;
+}
