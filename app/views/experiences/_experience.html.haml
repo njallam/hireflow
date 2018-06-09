@@ -2,9 +2,8 @@
   .card-body
     %h5.card-title= experience.title
     .card-text
-      .start_date= experience.start_date
-      .end_date= experience.end_date
-      .description= experience.description
+      .text-muted #{experience.start_date} &ndash; #{experience.end_date} &bullet; #{distance_of_time_in_words experience.start_date, experience.end_date} &bullet; #{time_ago_in_words experience.end_date} ago
+      = experience.description
   - if params[:controller] == 'applicants'
     .card-footer
       = link_to 'Edit', edit_applicant_profile_experience_path(experience), class: 'btn btn-warning'

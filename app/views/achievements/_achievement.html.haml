@@ -2,8 +2,8 @@
   .card-body
     %h5.card-title= achievement.title
     .card-text
-      .date= achievement.date
-      .description= achievement.description
+      .text-muted #{achievement.date} &bullet; #{time_ago_in_words achievement.date} ago
+      = achievement.description
   - if params[:controller] == 'applicants'
     .card-footer
       = link_to 'Edit', edit_applicant_profile_achievement_path(achievement), class: 'btn btn-warning'

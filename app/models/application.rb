@@ -1,6 +1,5 @@
 class Application < ApplicationRecord
   include AASM
-  include Devise::Controllers::Helpers
 
   belongs_to :job
   belongs_to :applicant
