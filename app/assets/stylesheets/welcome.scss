@@ -75,3 +75,26 @@
 .footer p:last-child {
   margin-bottom: 0;
 }
+
+#testimonials {
+  .row {
+    .col-md-4 {
+      .card {
+        .image-cropper {
+          width: 10rem;
+          height: 10rem;
+          position: relative;
+          overflow: hidden;
+          border-radius: 50%;
+
+          img {
+            display: inline;
+            margin: 0 auto;
+            height: 100%;
+            width: auto;
+          }
+        }
+      }
+    }
+  }
+}
