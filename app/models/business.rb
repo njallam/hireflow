@@ -6,4 +6,15 @@ class Business < ApplicationRecord
 
   has_many :jobs, dependent: :destroy
   has_many :applications, through: :jobs
+
+  validates :size, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
+
+  def size_string
+    return 'unknown' unless size
+    case size
+    when 0..9 then 'small'
+    when 10..49 then'medium'
+    else 'large'
+    end
+  end
 end

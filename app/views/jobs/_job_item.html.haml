@@ -1,0 +1,11 @@
+.card
+  .card-body
+    .row
+      .col-auto.mr-2
+        = image_tag 'shards.svg', class: 'img', style: 'height: 100%'
+      .col-md-9.flex-col
+        %h5.my-0= job.position
+        %p.my-0= job.business.name
+        %p.my-0.text-muted= job.created_at.strftime('%d/%m/%Y')
+      .col-md-1
+        %a.btn.btn-primary{ href: job_path(job) } View

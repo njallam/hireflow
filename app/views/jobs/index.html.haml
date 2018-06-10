@@ -5,36 +5,16 @@
     - if business_signed_in?
       = link_to 'Post New Job', new_job_path, class: 'btn btn-primary mb-4 btn-block'
     .card
-      .card-header
-        Your Filters
+      .card-header Your Filters
       .card-body
         .card.mb-4
-          .card-header
-            City
-          .card-body
-            London
+          .card-header City
+          .card-body London
         .card.my-4
-          .card-header
-            Job Title
-          .card-body
-            Programmer
+          .card-header Job Title
+          .card-body Programmer
         .card.mt-4
-          .card-header
-            Company Size
-          .card-body
-            Medium
+          .card-header Company Size
+          .card-body Medium
   .col-md-9
-    .card
-      -# TODO: render @business_jobs
-      - @jobs.each do |job|
-        .card
-          .card-body
-            .row
-              .col-auto.mr-2
-                = image_tag 'shards.svg', class: 'img', style: 'height: 100%'
-              .col-md-8.flex-col
-                %p.my-0= job.position
-                %p.my-0= job.business.name
-                %p.my-0= job.created_at.strftime('%d/%m/%Y')
-              .col-md-2
-                %a.btn.btn-primary{ href: job_path(job) } View
+    = render partial: 'jobs/job_item', collection: @jobs, as: :job

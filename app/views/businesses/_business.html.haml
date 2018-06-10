@@ -3,11 +3,12 @@
   .card-body
     .row
       .col-md-1
-        = image_tag 'shards.svg', class: 'img img-thumbnail', style: 'height: 100%'
+        = image_tag 'shards.svg', class: 'img img-thumbnail'
       .col-md-5
         .card
           .card-header= business.name
           .card-body
+            .card-text.text-muted #{business.size_string} size
             .card-text= business.description
       - if business.city
         .col-md-6
