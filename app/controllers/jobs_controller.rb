@@ -1,15 +1,18 @@
 class JobsController < ApplicationController
-  before_action :set_job, only: %i[show edit update destroy]
-  before_action :authenticate_business!, only: %i[new create edit update destroy]
-  before_action :redirect_business_job, only: %i[edit update destroy]
+  before_action :set_job, except: %i[index new create]
+  before_action :authenticate_business!, except: %i[index show]
+  before_action :redirect_business_job, only: %i[edit update destroy close open]
 
   helper_method :business_job?
 
   def index
-    @jobs = Job.all
+    @jobs = Job.open
+    @business_jobs = Job.where business: current_business
   end
 
-  def show; end
+  def show
+    @application = Application.find_by job: @job, applicant: current_applicant
+  end
 
   def new
     @job = Job.new
@@ -42,6 +45,18 @@ class JobsController < ApplicationController
     @job.destroy
     flash[:notice] = 'Job was successfully destroyed.'
     redirect_to jobs_path
+  end
+
+  def close
+    @job.update closed: true
+    flash[:notice] = 'Job was successfully closed.'
+    redirect_to @job
+  end
+
+  def open
+    @job.update closed: false
+    flash[:notice] = 'Job was successfully opened.'
+    redirect_to @job
   end
 
   private

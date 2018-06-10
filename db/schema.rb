@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_08_115531) do
+ActiveRecord::Schema.define(version: 2018_06_10_145503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2018_06_08_115531) do
     t.datetime "updated_at", null: false
     t.string "aasm_state"
     t.text "cover_letter"
-    t.boolean "rejected"
+    t.boolean "rejected", default: false, null: false
     t.text "offer"
     t.text "interview_message"
     t.index ["applicant_id"], name: "index_applications_on_applicant_id"
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(version: 2018_06_08_115531) do
     t.bigint "business_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "closed", default: false, null: false
     t.index ["business_id"], name: "index_jobs_on_business_id"
   end
 

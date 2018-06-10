@@ -10,13 +10,9 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    application = Application.new
-    application.applicant = current_applicant
-    application.job = Job.find params[:id]
-    if application.save
-      redirect_to application
-    else
-      redirect_to application.find_existing
+    application = Application.new_application current_applicant, Job.find(params[:id])
+    if application.save then redirect_to application
+    else redirect_to application.job, alert: application.errors
     end
   end
 

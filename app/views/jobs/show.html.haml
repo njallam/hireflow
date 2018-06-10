@@ -1,9 +1,16 @@
 %h2 Job Listing
 = render @job
 - if business_job? @job
-  = link_to 'Edit', edit_job_path(@job), class: 'btn btn-primary my-4'
+  = link_to 'Edit', edit_job_path, class: 'btn btn-primary my-4'
+  - if @job.closed?
+    = link_to 'Reopen', open_job_path, method: :patch, class: 'btn btn-warning my-4'
+  - else
+    = link_to 'Close', close_job_path, method: :patch, class: 'btn btn-warning my-4'
+  = link_to 'Delete', @job, method: :delete, class: 'btn btn-danger my-4'
 = render @job.business
-- unless business_signed_in?
+- if @application
+  = link_to 'View application', @application, class: 'btn btn-primary'
+- elsif applicant_signed_in? && !@job.closed
   = link_to 'Apply', apply_job_path, method: :post, class: 'btn btn-primary'
 
 - if business_job? @job

@@ -6,6 +6,7 @@ class Application < ApplicationRecord
   validates_associated :job
   validates_associated :applicant
   validates :applicant, uniqueness: { scope: :job }
+  validate :job_must_be_open, on: :create
 
   aasm whiny_transitions: false do
     state :personal, intial: true
@@ -60,6 +61,13 @@ class Application < ApplicationRecord
     accepted?
   end
 
+  def self.new_application(applicant, job)
+    application = Application.new
+    application.applicant = applicant
+    application.job = job
+    application
+  end
+
   private
 
   def applicant?(bool)
@@ -68,5 +76,9 @@ class Application < ApplicationRecord
 
   def business?(bool)
     !bool
+  end
+
+  def job_must_be_open
+    errors.add :job, 'must be open for applications' if job.closed?
   end
 end

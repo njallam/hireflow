@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   resources :jobs do
     post 'apply', on: :member, to: 'applications#create'
+    patch 'close', on: :member
+    patch 'open', on: :member
   end
   resources :applications, only: %i[show index update] do
     patch 'confirm', on: :member

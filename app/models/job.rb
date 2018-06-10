@@ -4,6 +4,8 @@ class Job < ApplicationRecord
   validates :position, presence: true
   validates_associated :business
 
+  scope :open, -> { where closed: false }
+
   def title
     "#{position} at #{business.name}"
   end

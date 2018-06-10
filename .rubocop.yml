@@ -32,6 +32,10 @@ Metrics/ClassLength:
   Exclude:
     - test/controllers/*
 
+Metrics/BlockLength:
+  Exclude:
+    - config/routes.rb
+
 Style/ClassAndModuleChildren:
   Enabled: false
 

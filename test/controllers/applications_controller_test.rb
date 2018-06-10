@@ -39,7 +39,7 @@ class ApplicationsControllerTest < ActionDispatch::IntegrationTest
     sign_in @applicant
     assert_difference 'Application.count', +1 do
       2.times { post apply_job_url @job }
-      assert_redirected_to @applicant.applications.last
+      assert_redirected_to @job
     end
   end
 
