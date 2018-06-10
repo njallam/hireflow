@@ -48,13 +48,13 @@ class JobsController < ApplicationController
   end
 
   def close
-    @job.update closed: true
+    @job.update deadline: Time.zone.now
     flash[:notice] = 'Job was successfully closed.'
     redirect_to @job
   end
 
   def open
-    @job.update closed: false
+    @job.update deadline: nil
     flash[:notice] = 'Job was successfully opened.'
     redirect_to @job
   end
@@ -74,6 +74,6 @@ class JobsController < ApplicationController
   end
 
   def job_params
-    params.require(:job).permit(:position, :description)
+    params.require(:job).permit(:position, :description, :deadline)
   end
 end

@@ -9,3 +9,12 @@
       %tr
         %th Description:
         %td= job.description
+      %tr
+        %th Deadline:
+        - if job.deadline
+          %td
+            = job.deadline
+            - if job.deadline.future?
+              (#{distance_of_time_in_words_to_now job.deadline})
+        - else
+          %td Not specified

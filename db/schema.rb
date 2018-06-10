@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_10_163510) do
+ActiveRecord::Schema.define(version: 2018_06_10_180229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 2018_06_10_163510) do
     t.bigint "business_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "closed", default: false, null: false
+    t.datetime "deadline"
     t.index ["business_id"], name: "index_jobs_on_business_id"
   end
 
