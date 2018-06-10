@@ -1,9 +1,8 @@
 #header
-  .background-overlay
   .row.p-5
     .col-md-6.p-5
       %h1 Pipeline Your Applications
-      %p.lead.font-weight-normal Our mission is to connect new startups with candidates looking for opportunities at places where they can make a difference and to simplify the application process for both sides.
+      %p.lead.font-weight-normal Our mission is to connect new startups with candidates looking for internships at places where they can make a difference and to simplify the application process for both sides.
       .btn-toolbar
         %a.btn.mr-3.mt-2#sign-up-button{ href: new_business_registration_path } Hire
         %a.btn.ml-3.mt-2#sign-in-button{ href: new_applicant_registration_path } Apply
@@ -20,29 +19,35 @@
     .row
       .col-md-6.p-5
         %h3 Personalise Your Startup's Application Pipeline
-      .col-md-6
+      .col-md-6.p-0
+        = image_tag 'bg-showcase-1.jpg', style: 'width: 100%'
     .row.text-white.bg-dark
-      .col-md-6
+      .col-md-6.p-0
+        = image_tag 'bg-showcase-3.jpg', style: 'width: 100%'
       .col-md-6.p-5
         %h3 Organise your Problems
     .row
       .col-md-6.p-5
         %h3 Volume
-      .col-md-6
+      .col-md-6.p-0
+        = image_tag 'bg-showcase-2.jpg', style: 'width: 100%'
   .tab-pane.fade#features-applicant
     .row
       .col-md-6.p-5
         %h3 Find your Dream Startup
-      .col-md-6
+      .col-md-6.p-0
+        = image_tag 'bg-showcase-1.jpg', style: 'width: 100%'
     .row.text-white.bg-dark
-      .col-md-6
+      .col-md-6.p-0
+        = image_tag 'bg-showcase-3.jpg', style: 'width: 100%'
       .col-md-6.p-5
         %h3 Improve Efficiency
         %p.lead Tired of entering information like your work experience and grades tens of times over? Worry no more! HireFlow allows you to enter your credentials once and reuse them for each application.
     .row
       .col-md-6.p-5
         %h3 Applicant
-      .col-md-6
+      .col-md-6.p-0
+        = image_tag 'bg-showcase-2.jpg', style: 'width: 100%'
 
 .bg-light.text-center.bg-dark#steps
   %h2.pt-5.text-white 3 Easy Steps!
@@ -77,9 +82,13 @@
       .card
         .card-header Sarah Morgan, 2nd Year Computing Student
         .card-body
+          .card-text I just finished my second year at Imperial College London and HireFlow has been a fantastic tool to help me manage in this hectic application season!
     .col-md-4
       .card
-        .card-header Sarah Morgan, 2nd Year Computing Student
+        .card-header
+          Sarah Morgan
+          %br
+          2nd Year Computing Student
         .card-body
     .col-md-4
       .card
