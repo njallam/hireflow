@@ -3,7 +3,7 @@ class Education < ApplicationRecord
   has_many :subjects, dependent: :destroy
 
   validates :place, presence: true
-  validates :end_date, date: { after_or_equal_to: :start_date }
+  validates_date :end_date, on_or_after: :start_date
 
   default_scope { order start_date: :desc }
 end
