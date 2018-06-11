@@ -1,11 +1,6 @@
 %h1 Editing job
 
-= simple_form_for @job, url: job_path(@job) do |f|
-  = f.error_notification
-  = f.input :position
-  = f.input :description
-  = f.input :deadline, html5: true, include_blank: true
-  = f.button :submit
+= render 'form'
 
 = link_to 'Show', @job
 \|
