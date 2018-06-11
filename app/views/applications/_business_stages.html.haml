@@ -3,19 +3,19 @@
     .card-header
       Screening
     .card-body
-      = link_to 'Accept', accept_application_path, method: :patch, class: 'btn btn-success'
-      = link_to 'Reject', reject_application_path, method: :patch, class: 'btn btn-danger'
-- if application.interview? && !application.rejected?
-  .card.my-4
-    .card-header
-      Interview Offer
-    .card-body
       = simple_form_for application, url: application_path do |f|
         = f.error_notification
         = f.input :interview_message
-        = f.button :submit, 'Send Interview Offer'
+        = f.button :submit, 'Send', class: 'btn btn-success'
+        = link_to 'Reject', reject_application_path, method: :patch, class: 'btn btn-danger'
+- if application.interview? && !application.rejected?
+  .card.my-4
+    .card-header
+      Interview
+    .card-body
+      = application.interview_message
     .card-footer
-      = link_to 'Accept', accept_application_path, method: :patch, class: 'btn btn-success'
+      = link_to 'Proceed', accept_application_path, method: :patch, class: 'btn btn-success'
       = link_to 'Reject', reject_application_path, method: :patch, class: 'btn btn-danger'
 - if application.offer?
   - if application.rejected?
@@ -28,12 +28,15 @@
   - else
     .card.my-4
       .card-header
-        Submit an Offer
+        Offer
       .card-body
-        = simple_form_for application, url: application_path do |f|
-          = f.error_notification
-          = f.input :offer
-          = f.button :submit, 'Send Offer'
+        - if application.offer
+          = application.offer
+        - else
+          = simple_form_for application, url: application_path do |f|
+            = f.error_notification
+            = f.input :offer
+            = f.button :submit, 'Send', class: 'btn btn-success'
 - if application.accepted?
   .card.my-4
     .card-header

@@ -21,12 +21,15 @@ class ApplicationsController < ApplicationController
     redirect_to @application
   end
 
+  # This method smells of :reek:TooManyStatements
   def update
     if @application.cover? then save_element :cover_letter, 'Cover letter saved'
-    elsif @application.interview? then save_element :interview_message, 'Interview offer saved'
+    elsif @application.screening?
+      save_element :interview_message, 'Interview message saved'
+      @application.accept! applicant_signed_in?
     elsif @application.offer? then save_element :offer, 'Offer saved'
     end
-    # TODO: limit wchich type of user can do what
+    # TODO: limit which type of user can do what
     @application.submit! applicant_signed_in? if params[:commit] == 'Submit'
     redirect_to @application
   end

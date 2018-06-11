@@ -16,25 +16,27 @@
       .card-header
         Offer
       .card-body
-        %p= application.offer
-        %p You have rejected this offer.
+        = application.offer
+        %hr
+        You have rejected this offer.
   - else
     .card.my-4
       .card-header
         Offer
       .card-body
-        %p= application.offer
-        -#
-          - if application.offer
-            .card-footer
-              = link_to 'Accept Offer', accept_application_path, method: :patch, class: 'btn btn-success'
-              = link_to 'Reject Offer', reject_application_path, method: :patch, class: 'btn btn-danger'
+        = application.offer
+      - if application.offer
+        .card-footer
+          = link_to 'Accept Offer', accept_application_path, method: :patch, class: 'btn btn-success'
+          = link_to 'Reject Offer', reject_application_path, method: :patch, class: 'btn btn-danger'
 - if application.accepted?
   .card
     .card-header
       Offer
     .card-body
-      %p You've been accepted for this position.
+      = application.offer
+      %hr
+      You've been accepted for this position.
 - if application.personal? || application.personaled?
   .card.my-4
     .card-header
@@ -52,7 +54,7 @@
       - if application.cover?
         = simple_form_for application do |f|
           = f.error_notification
-          = f.input :cover_letter
+          = f.input :cover_letter, label: false
           = f.button :submit, 'Save'
           = f.button :submit, 'Submit', class: 'btn-primary'
       - else
