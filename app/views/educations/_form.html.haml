@@ -1,0 +1,11 @@
+= simple_form_for @education, url: @education.new_record? ? applicant_profile_educations_path : applicant_profile_education_path do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :place
+    = f.input :start_date, html5: true
+    = f.input :end_date, html5: true
+
+  .form-actions
+    = f.button :submit

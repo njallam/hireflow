@@ -1,0 +1,6 @@
+= simple_form_for @job, url: @job.new_record? ? jobs_path : job_path do |f|
+  = f.error_notification
+  = f.input :position
+  = f.input :description
+  = f.input :deadline, html5: true, include_blank: true
+  = f.button :submit
