@@ -6,8 +6,11 @@ class JobsController < ApplicationController
   helper_method :business_job?
 
   def index
-    @jobs = Job.open
-    @business_jobs = Job.where business: current_business
+    position = params[:position]
+    jobs_scope = Job.open
+    jobs_scope = jobs_scope.position(position) if position
+    @jobs = smart_listing_create :jobs, jobs_scope, partial: 'jobs/list'
+    # @business_jobs = Job.where business: current_business
   end
 
   def show

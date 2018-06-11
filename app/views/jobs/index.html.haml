@@ -7,14 +7,9 @@
     .card
       .card-header Your Filters
       .card-body
-        .card.mb-4
-          .card-header City
-          .card-body London
-        .card.my-4
-          .card-header Job Title
-          .card-body Programmer
-        .card.mt-4
-          .card-header Company Size
-          .card-body Medium
+        = smart_listing_controls_for(:jobs, class: 'form-inline') do
+          .form-group.input-append
+            = text_field_tag :position, '', class: 'search form-control', placeholder: 'Search...', autocomplete: :off
+          %button.btn.btn-primary.btn-block{ type: 'submit' } Search
   .col-md-9
-    = render partial: 'jobs/job_item', collection: @jobs, as: :job
+    = smart_listing_render(:jobs)

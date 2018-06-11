@@ -7,6 +7,7 @@ class Job < ApplicationRecord
   validates_datetime :deadline, on: :create, on_or_after: :today, allow_nil: true
 
   scope :open, -> { where 'deadline > ? OR deadline IS NULL', Time.zone.now }
+  scope :position, ->(search) { where('position like ?', "%#{search}%") }
 
   def title
     "#{position} at #{business.name}"

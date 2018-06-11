@@ -1,0 +1,7 @@
+- if smart_listing.empty?
+  %p.alert.alert-info No records!
+- else
+  - smart_listing.collection.each do |j|
+    = render partial: 'jobs/job_item', locals: { job: j }
+  = smart_listing.paginate
+  = smart_listing.pagination_per_page_links
