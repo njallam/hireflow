@@ -7,9 +7,8 @@
     .card
       .card-header Your Filters
       .card-body
-        = smart_listing_controls_for(:jobs, class: 'form-inline') do
-          .form-group.input-append
-            = text_field_tag :position, '', class: 'search form-control', placeholder: 'Search...', autocomplete: :off
+        = smart_listing_controls_for :jobs do
+          = text_field_tag :position, '', class: 'form-control', placeholder: 'Search...', autocomplete: :off
           %button.btn.btn-primary.btn-block{ type: 'submit' } Search
   .col-md-9
     = smart_listing_render(:jobs)
