@@ -6,7 +6,7 @@
   .col-md-9
     .card#who
       .row.p-3
-        .col-md-3
+        .col-md-4
           %h3.font-weight-bold WHO
           %h5= @job.business.name
           %p.text-muted
@@ -21,10 +21,12 @@
               = link_to 'Close', close_job_path, method: :patch, class: 'btn btn-sm btn-warning my-4'
             = link_to 'Delete', @job, method: :delete, class: 'btn btn-sm btn-danger my-4'
           - elsif @application
-            = link_to 'View application', @application, class: 'btn btn-primary mb-4'
+            = link_to 'View your application', @application, class: 'btn btn-primary mb-4'
           - elsif applicant_signed_in? && !@job.closed?
             = link_to 'Apply', apply_job_path, method: :post, class: 'btn btn-primary mb-4'
-        .col-md-9
+            - if @job.deadline&.future?
+              %p.text-muted (Deadline in #{distance_of_time_in_words_to_now @job.deadline})
+        .col-md-8
           .card#description
             %p= @job.business.description
 .row
@@ -43,6 +45,13 @@
     .card.h-100
       .card-body
         %h3.font-weight-bold WHEN
+        %table
+          %tr
+            %th Start Date:
+            %td= @job.start_date? ? @job.start_date.strftime('%d/%m/%Y') : 'No start date specified'
+          %tr
+            %th End Date:
+            %td= @job.end_date? ? @job.end_date.strftime('%d/%m/%Y') : 'No start date specified'
 
 - if business_job? @job
   %h4.my-4 Applicants
