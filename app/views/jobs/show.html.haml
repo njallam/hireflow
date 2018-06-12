@@ -1,17 +1,48 @@
-%h2 Job Listing
-= render @job
-- if business_job? @job
-  = link_to 'Edit', edit_job_path, class: 'btn btn-primary my-4'
-  - if @job.closed?
-    = link_to 'Reopen', open_job_path, method: :patch, class: 'btn btn-warning my-4'
-  - else
-    = link_to 'Close', close_job_path, method: :patch, class: 'btn btn-warning my-4'
-  = link_to 'Delete', @job, method: :delete, class: 'btn btn-danger my-4'
-= render @job.business
-- if @application
-  = link_to 'View application', @application, class: 'btn btn-primary'
-- elsif applicant_signed_in? && !@job.closed
-  = link_to 'Apply', apply_job_path, method: :post, class: 'btn btn-primary'
+%h2= @job.title
+.row.my-3
+  .col-md-3
+    .card.h-100
+      = image_tag 'shards.svg'
+  .col-md-9
+    .card#who
+      .row.p-3
+        .col-md-3
+          %h3.font-weight-bold WHO
+          %h5= @job.business.name
+          %p.text-muted
+            #{@job.business.size_string.capitalize}-sized company
+            %br
+            = @job.business.city
+          - if business_job? @job
+            = link_to 'Edit', edit_job_path, class: 'btn btn-sm btn-primary my-4'
+            - if @job.closed?
+              = link_to 'Reopen', open_job_path, method: :patch, class: 'btn btn-sm btn-warning my-4'
+            - else
+              = link_to 'Close', close_job_path, method: :patch, class: 'btn btn-sm btn-warning my-4'
+            = link_to 'Delete', @job, method: :delete, class: 'btn btn-sm btn-danger my-4'
+          - elsif @application
+            = link_to 'View application', @application, class: 'btn btn-primary mb-4'
+          - elsif applicant_signed_in? && !@job.closed?
+            = link_to 'Apply', apply_job_path, method: :post, class: 'btn btn-primary mb-4'
+        .col-md-9
+          .card#description
+            %p= @job.business.description
+.row
+  .col-md-4.my-2
+    .card.h-100
+      .card-body
+        %h3.font-weight-bold WHAT
+        %strong= @job.position
+        %p= @job.description
+  .col-md-4.my-2
+    .card.h-100#where
+      .card-body
+        %h3.font-weight-bold WHERE
+        %iframe.googlemap{ src: "https://www.google.com/maps/embed/v1/place?q=#{@job.business.city}&key=AIzaSyCdi-CnUO45jF37i_xlG1zmDDQg2v4L0Xg", width: '100%', height: '100%', frameborder: '0' }
+  .col-md-4.my-2
+    .card.h-100
+      .card-body
+        %h3.font-weight-bold WHEN
 
 - if business_job? @job
   %h4.my-4 Applicants

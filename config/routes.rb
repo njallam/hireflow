@@ -1,9 +1,18 @@
 Rails.application.routes.draw do
-  root 'welcome#index'
   get '/sign_up', to: 'welcome#new', as: 'sign_up'
 
   devise_for :applicant
   devise_for :business
+
+  authenticated :applicant do
+    root to: 'jobs#index'
+  end
+
+  authenticated :business do
+    root to: 'jobs#index'
+  end
+
+  root 'welcome#index'
 
   resources :jobs do
     post 'apply', on: :member, to: 'applications#create'

@@ -11,4 +11,5 @@
           = text_field_tag :position, '', class: 'form-control', placeholder: 'Search...', autocomplete: :off
           %button.btn.btn-primary.btn-block{ type: 'submit' } Search
   .col-md-9
-    = smart_listing_render(:jobs)
+    .card.bg-light
+      = smart_listing_render(:jobs)

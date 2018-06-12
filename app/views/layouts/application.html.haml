@@ -11,7 +11,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     = render 'layouts/navbar'
-    - if current_page? root_path
+    - if (!business_signed_in? && !applicant_signed_in?) && current_page?(root_path)
       - if notice
         %p.alert.alert-info= notice
       - if alert
@@ -24,4 +24,3 @@
         - if alert
           %p.alert.alert-warning= alert
         = yield
-

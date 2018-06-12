@@ -1,4 +1,5 @@
-.card
+.card.m-3.full-card-link
+  %a{ href: job_path(job) }
   .card-body
     .row
       .col-auto.mr-2
@@ -7,5 +8,3 @@
         %h5.my-0= job.position
         %p.my-0= job.business.name
         %p.my-0.text-muted= job.created_at.strftime('%d/%m/%Y')
-      .col-md-1
-        %a.btn.btn-primary{ href: job_path(job) } View

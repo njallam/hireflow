@@ -1,5 +1,8 @@
 %h2.mb-4 #{@application.applicant.name} applying for #{link_to @application.job.title, @application.job} (#{@application.aasm_state} stage)
-= render @application.job
+- if applicant_signed_in?
+  = render @application.job
+- else
+  = render @application
 = render 'circles'
 
 - if applicant_signed_in?
