@@ -1,10 +1,13 @@
-%table
-  %tr
-    %th Name:
-    %td= applicant.name
-  %tr
-    %th Email:
-    %td= applicant.email
+%h5 Basic Information
+.card-deck
+  .card-body
+    .card-text Name: #{applicant.name}
+    .card-text Email: #{applicant.email}
+
+
+  - if params[:controller] == 'applicants'
+    .card-footer
+      = link_to 'Edit', edit_applicant_path, class: 'btn btn-warning btn-sm'
 %hr
 = render partial: 'educations/educations', locals: { educations: applicant.educations }
 %hr
