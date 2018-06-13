@@ -3,7 +3,7 @@
   .card-body
     .row
       .col-md-1
-        = image_tag business.logo, class: 'img img-thumbnail'
+        = image_tag business.logo, class: 'img img-thumbnail' if business.logo.attached?
       .col-md-5
         .card
           .card-header= business.name
