@@ -18,5 +18,8 @@ InstanceVariableAssumption:
 UtilityFunction:
   public_methods_only: true
 
+TooManyInstanceVariables:
+  enabled: false
+
 exclude_paths:
   - db/migrate
