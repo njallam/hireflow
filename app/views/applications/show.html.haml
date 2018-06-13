@@ -3,7 +3,7 @@
   = render @application.job
 - else
   = render @application
-= render 'circles'
+= render 'circles', application: @application
 
 - if applicant_signed_in?
   = render partial: 'applications/applicant_stages', locals: { application: @application }
