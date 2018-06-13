@@ -1,11 +1,11 @@
-.card.full-card-link
+.card.m-3.full-card-link
   %a{ href: application_path(application) }
   .card-body
     .row
       .col-auto.mr-2
         - if applicant_signed_in?
-          = image_tag 'shards.svg', class: 'img img-thumbnail', style: 'height: 100%'
-      .col-md-4.flex-col
+          = image_tag application.job.business.logo, style: 'width: 100%' if application.job.business.logo.attached?
+      .col-md-8.flex-col
         - if applicant_signed_in?
           %p.my-0= application.job.title
           %p.my-0= application.job.business.name
@@ -14,5 +14,5 @@
           %p.my-0= application.applicant.name
           %p.my-0= application.job.position
           %p.my-0= application.job.created_at.strftime('%d/%m/%Y')
-      .col-md-4
+      .col-md-2
         %p Application Stage: #{application.aasm_state}

@@ -9,7 +9,7 @@
       .card-body
         = smart_listing_controls_for :jobs do
           = text_field_tag :position, '', class: 'form-control', placeholder: 'Search...', autocomplete: :off
-          %button.btn.btn-primary.btn-block{ type: 'submit' } Search
+          %button.btn.btn-primary.btn-block.mt-2{ type: 'submit' } Search
   .col-md-9
     .card.bg-light
       = smart_listing_render(:jobs)

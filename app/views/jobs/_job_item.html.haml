@@ -2,8 +2,8 @@
   %a{ href: job_path(job) }
   .card-body
     .row
-      .col-auto.mr-2
-        = image_tag 'shards.svg', class: 'img', style: 'height: 100%'
+      .col-md-3
+        = image_tag job.business.logo, class: 'img', style: 'width: 100%' if job.business.logo.attached?
       .col-md-9.flex-col
         %h5.my-0= job.position
         %p.my-0= job.business.name

@@ -1,8 +1,8 @@
 %h2= @job.title
 .row.my-3
   .col-md-3
-    .card.h-100
-      = image_tag @job.business.logo, class: 'card-img' if @job.business.logo.attached?
+    .card.h-100.p-2
+      = image_tag @job.business.logo, class: 'card-img my-auto' if @job.business.logo.attached?
   .col-md-9
     .card#who
       .row.p-3
