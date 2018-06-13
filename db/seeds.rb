@@ -8,11 +8,11 @@ education = Education.create place: 'Imperial College London', start_date: '2016
 Subject.create education: education, title: 'Maths', result: 'A*'
 Subject.create education: education, title: 'Biology', result: 'A'
 
-job1 = Job.create position: 'Frontend developer', description: 'Do the frontend stuff', business: business1
-Job.create position: 'Backend developer', description: 'Do the backend stuff', business: business1
+job1 = Job.create position: 'Frontend developer', description: 'Do the frontend stuff', business: business1, start_date: '2018-06-15', end_date: '2018-09-01', salary: '36500'
+Job.create position: 'Backend developer', description: 'Do the backend stuff', business: business1, start_date: '2018-06-15', end_date: '2018-09-01', salary: '30000'
 
-job2 = Job.create position: 'Data Scientist', description: 'Look at all the numbers and do some machine learning', business: business2
-Job.create position: 'Sys Admin', description: 'Make the computers work', business: business2
+job2 = Job.create position: 'Data Scientist', description: 'Look at all the numbers and do some machine learning', business: business2, start_date: '2018-06-15', end_date: '2018-09-01', salary: '28500'
+Job.create position: 'Sys Admin', description: 'Make the computers work', business: business2, start_date: '2018-06-15', end_date: '2018-09-01', salary: '36500'
 
 Application.create job: job1, applicant: applicant
 Application.create job: job2, applicant: applicant

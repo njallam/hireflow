@@ -30,7 +30,7 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
     sign_in @business
     assert_difference 'Job.count', +1 do
       post jobs_path, params: { job: { position: 'dev', description: 'make all the codes',
-                                       business: @business } }
+                                       business: @business, salary: 36_500 } }
       assert_redirected_to @business.jobs.last
     end
   end
@@ -50,8 +50,10 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
     sign_in @job.business
     new_position = Faker::Job.title
     new_description = Faker::Lorem.paragraph
+    new_salary = Faker::Number.number(5)
     patch job_url @job, params: { job: { position: new_position,
-                                         description: new_description } }
+                                         description: new_description,
+                                         salary: new_salary } }
     @job.reload
     assert_equal new_position, @job.position
     assert_equal new_description, @job.description
