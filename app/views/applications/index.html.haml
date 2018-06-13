@@ -1,6 +1,32 @@
 %h2 Your Applications
 .row
   .col-md-12
-    .card.bg-light
-      - @applications.each do |application|
-        = render application
+    %h4 Action Required
+    - if @action.any?
+      .card.bg-light
+        - @action.each do |application|
+          = render application
+    - else
+      .card.bg-light
+        .card-body
+          %p.card-text No applications.
+    %hr
+    %h4 Waiting
+    - if @waiting.any?
+      .card.bg-light
+        - @waiting.each do |application|
+          = render application
+    - else
+      .card.bg-light
+        .card-body
+          %p.card-text No applications.
+    %hr
+    %h4 Completed
+    - if @completed.any?
+      .card.bg-light
+        - @completed.each do |application|
+          = render application
+    - else
+      .card.bg-light
+        .card-body
+          %p.card-text No applications.

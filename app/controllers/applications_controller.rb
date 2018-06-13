@@ -7,6 +7,9 @@ class ApplicationsController < ApplicationController
     @applications = if applicant_signed_in? then current_applicant.applications
                     else current_business.applications
                     end
+    @action = @applications.action(applicant_signed_in?)
+    @waiting = @applications.waiting(applicant_signed_in?)
+    @completed = @applications.completed
   end
 
   def create

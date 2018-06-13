@@ -1,4 +1,4 @@
-%h2.mb-4 #{@application.applicant.name} applying for #{link_to @application.job.title, @application.job} (#{@application.aasm_state} stage)
+%h2.mb-4 #{@application.applicant.name} applying for #{link_to @application.job.title, @application.job}
 - if applicant_signed_in?
   = render @application.job
 - else

@@ -8,6 +8,21 @@ class Application < ApplicationRecord
   validates :applicant, uniqueness: { scope: :job }
   validate :job_must_be_open, on: :create
 
+  APPLICANT_STAGES = %w[personal cover].freeze
+  BUSINESS_STAGES = %w[screening interview offer].freeze
+
+  scope :action, lambda { |applicant|
+    if applicant then where(aasm_state: APPLICANT_STAGES, rejected: false)
+    else where(aasm_state: BUSINESS_STAGES, rejected: false)
+    end
+  }
+  scope :waiting, lambda { |applicant|
+    if applicant then where(aasm_state: BUSINESS_STAGES, rejected: false)
+    else where(aasm_state: APPLICANT_STAGES, rejected: false)
+    end
+  }
+  scope :completed, -> { where('rejected = ? OR aasm_state = ?', true, 'accepted') }
+
   aasm whiny_transitions: false do
     state :personal, intial: true
     state :cover
