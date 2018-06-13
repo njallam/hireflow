@@ -35,6 +35,7 @@
       .card-body
         %h3.font-weight-bold WHAT
         %strong= @job.position
+        %p £#{@job.salary} per annum
         %p= @job.description
   .col-md-4.my-2
     .card.h-100#where
@@ -51,7 +52,7 @@
             %td= @job.start_date? ? @job.start_date.strftime('%d/%m/%Y') : 'No start date specified'
           %tr
             %th End Date:
-            %td= @job.end_date? ? @job.end_date.strftime('%d/%m/%Y') : 'No start date specified'
+            %td= @job.end_date? ? @job.end_date.strftime('%d/%m/%Y') : 'No end date specified'
 
 - if business_job? @job
   %h4.my-4 Applicants

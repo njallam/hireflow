@@ -2,6 +2,8 @@ class Job < ApplicationRecord
   belongs_to :business
   has_many :applications, dependent: :destroy
   validates :position, presence: true
+  validates :description, presence: true
+  validates :salary, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates_associated :business
 
   validates_datetime :deadline, on: :create, on_or_after: :today, allow_nil: true
