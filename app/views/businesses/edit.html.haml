@@ -2,6 +2,7 @@
 = simple_form_for @business, url: business_profile_path do |f|
   = f.error_notification
   = f.input :name
+  = f.input :logo
   = f.input :city
   = f.input :size, label: 'Employees'
   = f.input :description

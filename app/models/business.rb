@@ -7,6 +7,8 @@ class Business < ApplicationRecord
   has_many :jobs, dependent: :destroy
   has_many :applications, through: :jobs
 
+  has_one_attached :logo
+
   validates :size, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
 
   def size_string

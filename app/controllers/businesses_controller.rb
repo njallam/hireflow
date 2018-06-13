@@ -8,6 +8,7 @@ class BusinessesController < ApplicationController
   def update
     @business = current_business
     if @business.update business_params
+      attach_logo
       flash[:notice] = 'Changes Saved'
       redirect_to edit_business_profile_path
     else
@@ -19,5 +20,10 @@ class BusinessesController < ApplicationController
 
   def business_params
     params.require(:business).permit(:name, :city, :size, :description)
+  end
+
+  def attach_logo
+    logo = params[:business][:logo]
+    @business.logo.attach logo if logo
   end
 end
