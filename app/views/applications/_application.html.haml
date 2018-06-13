@@ -2,10 +2,10 @@
   %a{ href: application_path(application) }
   .card-body
     .row
-      .col-auto.mr-2
+      .col-md-2
         - if applicant_signed_in?
-          = image_tag application.job.business.logo, style: 'width: 100%' if application.job.business.logo.attached?
-      .col-md-10.flex-col
+          = image_tag application.job.business.logo, class: 'img', style: 'width: 100%' if application.job.business.logo.attached?
+      .col-md-8.flex-col
         - if applicant_signed_in?
           %p.my-0= application.job.title
           %p.my-0= application.job.business.name
@@ -14,3 +14,6 @@
           %p.my-0= application.applicant.name
           %p.my-0= application.job.position
           %p.my-0= application.job.created_at.strftime('%d/%m/%Y')
+      .col-md-2.px-auto
+        %span.btn.step-2.ml-0{ class: personal_color(application) }
+          = icon 'fas', 'user-circle', class: 'fa-3x'
