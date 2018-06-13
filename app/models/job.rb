@@ -3,10 +3,8 @@ class Job < ApplicationRecord
   has_many :applications, dependent: :destroy
   validates :position, presence: true
   validates :description, presence: true
-  validates :salary, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :salary, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates_associated :business
-
-  validates_datetime :deadline, on: :create, on_or_after: :today, allow_nil: true
 
   scope :open, -> { where 'deadline > ? OR deadline IS NULL', Time.zone.now }
   scope :position, ->(search) { where('position ILIKE ?', "%#{search}%") }

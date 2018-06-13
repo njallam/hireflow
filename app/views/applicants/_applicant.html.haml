@@ -1,10 +1,13 @@
 %h5 Basic Information
-.card-deck
+.card
   .card-body
-    .card-text Name: #{applicant.name}
-    .card-text Email: #{applicant.email}
-
-
+    %table.card-text
+      %tr
+        %th Name:
+        %td= applicant.name
+      %tr
+        %th Email:
+        %td= applicant.email
   - if params[:controller] == 'applicants'
     .card-footer
       = link_to 'Edit', edit_applicant_path, class: 'btn btn-warning btn-sm'

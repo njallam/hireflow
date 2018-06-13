@@ -52,10 +52,13 @@
       Cover Letter
     .card-body
       - if application.cover?
-        = simple_form_for application do |f|
-          = f.error_notification
-          = f.input :cover_letter, label: false
-          = f.button :submit, 'Save'
-          = f.button :submit, 'Submit', class: 'btn-primary'
+        - if application.job.questions
+          #{application.job.business.name} suggests you answer the following questions:
+          %p= application.job.questions
+          = simple_form_for application do |f|
+            = f.error_notification
+            = f.input :cover_letter, label: false
+            = f.button :submit, 'Save'
+            = f.button :submit, 'Submit', class: 'btn-primary'
       - else
         %p= application.cover_letter

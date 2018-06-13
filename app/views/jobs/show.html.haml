@@ -25,9 +25,9 @@
               = link_to 'Close', close_job_path, method: :patch, class: 'btn btn-sm btn-warning'
             = link_to 'Delete', @job, method: :delete, class: 'btn btn-sm btn-danger'
           - elsif @application
-            = link_to 'View your application', @application, class: 'btn btn-primary mb-4'
+            = link_to 'View your application', @application, class: 'btn btn-primary'
           - elsif applicant_signed_in? && !@job.closed?
-            = link_to 'Apply', apply_job_path, method: :post, class: 'btn btn-primary mb-4'
+            = link_to 'Apply', apply_job_path, method: :post, class: 'btn btn-primary'
         .col-md-8
           .card#description
             %p= @job.business.description
