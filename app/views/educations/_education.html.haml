@@ -1,8 +1,8 @@
 .card.my-2
   .card-body
-    %h5.card-title= education.place
-    .card-text
-      .text-muted #{education.start_date} &ndash; #{education.end_date} &bullet; for #{distance_of_time_in_words education.start_date, education.end_date} &bullet; #{time_ago_in_words education.end_date} ago
+    %p.card-title.font-weight-bold.my-0= education.place
+    %p.card-title.my-0= education.field
+    %p.text-muted #{education.start_date.strftime('%b %Y')} &ndash; #{education.end_date.strftime('%b %Y')} &bullet; for #{distance_of_time_in_words education.start_date, education.end_date}
     .list-group.list-group-flush
       = render partial: 'subjects/subject', collection: education.subjects, locals: { education: education }
   - if params[:controller] == 'applicants'

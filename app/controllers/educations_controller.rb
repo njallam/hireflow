@@ -42,7 +42,7 @@ class EducationsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def education_params
-    params.require(:education).permit(:place, :start_date, :end_date)
+    params.require(:education).permit(:place, :field, :start_date, :end_date)
   end
 
   def education_authenticate

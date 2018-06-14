@@ -1,9 +1,9 @@
 .card.my-2
   .card-body
-    %h5.card-title= experience.title
-    .card-text
-      .text-muted #{experience.start_date} &ndash; #{experience.end_date} &bullet; for #{distance_of_time_in_words experience.start_date, experience.end_date} &bullet; #{time_ago_in_words experience.end_date} ago
-      = experience.description
+    %p.card-title.font-weight-bold.my-0= experience.title
+    %p.card-title.my-0= experience.place
+    %p.text-muted #{experience.start_date.strftime('%b %Y')} &ndash; #{experience.end_date.strftime('%b %Y')} &bullet; for #{distance_of_time_in_words experience.start_date, experience.end_date}
+    %p= experience.description
   - if params[:controller] == 'applicants'
     .card-footer
       = link_to 'Edit', edit_applicant_profile_experience_path(experience), class: 'btn btn-warning btn-sm'
