@@ -2,31 +2,28 @@
 .row
   .col-md-12
     %h4 Action Required
-    - if @action.any?
-      .card.bg-light
+    .card.bg-light
+      - if @action.any?
         - @action.each do |application|
           = render application
-    - else
-      .card.bg-light
+      - else
         .card-body
           %p.card-text No applications.
     %hr
     %h4 Waiting
-    - if @waiting.any?
-      .card.bg-light
+    .card.bg-light
+      - if @waiting.any?
         - @waiting.each do |application|
           = render application
-    - else
-      .card.bg-light
+      - else
         .card-body
           %p.card-text No applications.
     %hr
     %h4 Completed
-    - if @completed.any?
-      .card.bg-light
+    .card.bg-light
+      - if @completed.any?
         - @completed.each do |application|
           = render application
-    - else
-      .card.bg-light
+      - else
         .card-body
           %p.card-text No applications.
