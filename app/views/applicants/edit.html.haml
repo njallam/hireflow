@@ -1,16 +1,17 @@
-%h2 Edit Profile
-%h3 Personal Information
-= simple_form_for @applicant, url: applicant_profile_path do |f|
-  = f.error_notification
-  = f.input :first_name
-  = f.input :last_name
-  = f.button :submit, 'Update Profile', class: 'btn btn-primary mb-4'
-
-= render partial: 'educations/educations', locals: { educations: @applicant.educations }
-= link_to 'New Education', new_applicant_profile_education_path, class: 'btn btn-primary mb-4'
-
-= render partial: 'experiences/experiences', locals: { experiences: @applicant.experiences }
-= link_to 'New Experience', new_applicant_profile_experience_path, class: 'btn btn-primary mb-4'
-
-= render partial: 'achievements/achievements', locals: { achievements: @applicant.achievements }
-= link_to 'New Achievement', new_applicant_profile_achievement_path, class: 'btn btn-primary mb-4'
+.card#profile
+  .card-body
+    %h3 Personal Information
+    = simple_form_for @applicant, url: applicant_profile_path do |f|
+      = f.error_notification
+      = f.input :first_name
+      = f.input :last_name
+      = f.button :submit, 'Update Profile', class: 'btn btn-primary mb-4'
+  .card-body
+    = render partial: 'educations/educations', locals: { educations: @applicant.educations }
+    = link_to 'Add New Institution', new_applicant_profile_education_path, class: 'btn btn-primary mb-4'
+  .card-body
+    = render partial: 'experiences/experiences', locals: { experiences: @applicant.experiences }
+    = link_to 'Add New Experience', new_applicant_profile_experience_path, class: 'btn btn-primary mb-4'
+  .card-body
+    = render partial: 'achievements/achievements', locals: { achievements: @applicant.achievements }
+    = link_to 'Add New Achievement', new_applicant_profile_achievement_path, class: 'btn btn-primary mb-4'
