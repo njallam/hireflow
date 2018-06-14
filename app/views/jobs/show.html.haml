@@ -2,7 +2,10 @@
 .row.my-3
   .col-md-3
     .card.h-100.p-2
-      = image_tag @job.business.logo, class: 'card-img my-auto' if @job.business.logo.attached?
+      - if @job.business.logo.attached?
+        = image_tag @job.business.logo, class: 'img', style: 'max-width:100%; max-height:100%; height: auto; width:auto;'
+      - else
+        = image_tag 'shards.svg', class: 'img', style: 'height: 100%'
   .col-md-9
     .card#who
       .row.p-3
@@ -18,16 +21,16 @@
               (Deadline in #{distance_of_time_in_words_to_now @job.deadline})
 
           - if business_job? @job
-            = link_to 'Edit', edit_job_path, class: 'btn btn-sm btn-primary'
+            = link_to 'Edit', edit_job_path, class: 'btn btn-sm btn-info'
             - if @job.closed?
               = link_to 'Reopen', open_job_path, method: :patch, class: 'btn btn-sm btn-warning'
             - else
               = link_to 'Close', close_job_path, method: :patch, class: 'btn btn-sm btn-warning'
             = link_to 'Delete', @job, method: :delete, class: 'btn btn-sm btn-danger'
           - elsif @application
-            = link_to 'View your application', @application, class: 'btn btn-primary'
+            = link_to 'View your application', @application, class: 'btn btn-info'
           - elsif applicant_signed_in? && !@job.closed?
-            = link_to 'Apply', apply_job_path, method: :post, class: 'btn btn-primary'
+            = link_to 'Apply', apply_job_path, method: :post, class: 'btn btn-info'
         .col-md-8
           .card#description
             %p= @job.business.description
@@ -38,7 +41,7 @@
         %h3.card-title.font-weight-bold WHAT
         .card-text
           %strong= @job.position
-          %p £#{@job.salary} per annum
+          %p approx. £#{@job.salary} per annum
           %p= @job.description
   .col-md-4.my-2
     .card.h-100#where
@@ -60,5 +63,6 @@
 - if business_job? @job
   %hr
   %h4.my-4 Applicants
-  - @job.applications.each do |application|
-    = render application
+  .card.bg-dark.mb-4
+    - @job.applications.each do |application|
+      = render application

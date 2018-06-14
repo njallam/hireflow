@@ -2,9 +2,12 @@
   %a{ href: job_path(job) }
   .card-body
     .row
-      .col-md-3
-        = image_tag job.business.logo, class: 'img', style: 'width: 100%' if job.business.logo.attached?
-      .col-md-9.flex-col
+      .col-md-2.text-center
+        - if job.business.logo.attached?
+          = image_tag job.business.logo, class: 'img', style: 'max-width:100%; max-height:100%; height: auto; width:auto;'
+        - else
+          = image_tag 'shards.svg', class: 'img', style: 'height: 100%'
+      .col-md-10.flex-col
         %h5.my-0= job.position
         %p.my-0= job.business.name
         %p.my-0.text-muted= job.created_at.strftime('%d/%m/%Y')

@@ -7,6 +7,6 @@
       = render partial: 'subjects/subject', collection: education.subjects, locals: { education: education }
   - if params[:controller] == 'applicants'
     .card-footer
-      = link_to 'Add', new_applicant_profile_education_subject_path(education), class: 'btn btn-primary btn-sm'
+      = link_to 'Add', new_applicant_profile_education_subject_path(education), class: 'btn btn-info btn-sm'
       = link_to 'Edit', edit_applicant_profile_education_path(education), class: 'btn btn-warning btn-sm'
       = link_to 'Delete', applicant_profile_education_path(education), method: :delete, class: 'btn btn-danger btn-sm'
