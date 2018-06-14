@@ -1,4 +1,4 @@
-%nav.navbar.navbar-expand-md.navbar-light.border-bottom.p-3.px-md-4
+%nav.navbar.navbar-expand-md.navbar-dark.border-bottom.p-3.px-md-4
   %a.navbar-brand{ href: root_path }
     = image_tag 'shards.svg', class: 'navbar-logo'
     %span.navbar-brand-text HireFlow
@@ -19,9 +19,9 @@
       -# Account
       %form.form-inline.mx-2
         - if applicant_signed_in?
-          %a.btn.btn-outline-primary{ href: destroy_applicant_session_path, 'data-method': 'delete' } Logout
+          %a.btn.btn-outline-danger{ href: destroy_applicant_session_path, 'data-method': 'delete' } Logout
         - elsif business_signed_in?
-          %a.btn.btn-outline-primary{ href: destroy_business_session_path, 'data-method': 'delete' } Logout
+          %a.btn.btn-outline-danger{ href: destroy_business_session_path, 'data-method': 'delete' } Logout
         - else
           %a.btn.btn-primary.mr-2.mb-auto{ href: sign_up_path } Sign Up
           .dropdown.mb-auto
