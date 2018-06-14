@@ -37,15 +37,6 @@
       = application.offer
       %hr
       You've been accepted for this position.
-- if application.personal? || application.personaled?
-  .card.my-4
-    .card-header
-      Personal Information
-    .card-body
-      = render application.applicant
-    - if application.personal?
-      .card-footer
-        = link_to 'Confirm Details', confirm_application_path, method: :patch, class: 'btn btn-primary'
 - if application.cover? || application.covered?
   .card.my-4
     .card-header
@@ -55,10 +46,19 @@
         - if application.job.questions
           #{application.job.business.name} suggests you answer the following questions:
           %p= application.job.questions
-          = simple_form_for application do |f|
-            = f.error_notification
-            = f.input :cover_letter, label: false
-            = f.button :submit, 'Save'
-            = f.button :submit, 'Submit', class: 'btn-primary'
+        = simple_form_for application do |f|
+          = f.error_notification
+          = f.input :cover_letter, label: false
+          = f.button :submit, 'Save'
+          = f.button :submit, 'Submit', class: 'btn-primary'
       - else
         %p= application.cover_letter
+- if application.personal? || application.personaled?
+  .card.my-4
+    .card-header
+      Personal Information
+    .card-body
+      = render application.applicant
+    - if application.personal?
+      .card-footer
+        = link_to 'Confirm Details', confirm_application_path, method: :patch, class: 'btn btn-primary'

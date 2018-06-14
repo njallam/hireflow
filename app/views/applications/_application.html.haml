@@ -15,5 +15,18 @@
           %p.my-0= application.job.position
           %p.my-0= application.job.created_at.strftime('%d/%m/%Y')
       .col-md-2.px-auto
-        %span.btn.step-2.ml-0{ class: personal_color(application) }
-          = icon 'fas', 'user-circle', class: 'fa-3x'
+        - if application.personal?
+          %span.btn.step-2.ml-0{ class: personal_color(application) }
+            = icon 'fas', 'user-circle', class: 'fa-3x'
+        - if application.cover?
+          %span.btn.step-2.ml-0{ class: cover_color(application) }
+            = icon 'fas', 'edit', class: 'fa-3x'
+        - if application.screening?
+          %span.btn.step-2.ml-0{ class: screening_color(application) }
+            = icon 'fas', 'clock', class: 'fa-3x'
+        - if application.interview?
+          %span.btn.step-2{ class: interview_color(application) }
+            = icon 'fas', 'building', class: 'fa-3x'
+        - if application.accepted?
+          %span.btn.step-2.mr-0{ class: accepted_color(application) }
+            = icon 'fas', 'handshake', class: 'fa-3x'

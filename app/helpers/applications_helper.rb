@@ -4,7 +4,7 @@ module ApplicationsHelper
   end
 
   def cover_color(application)
-    'green' if application.covered?
+    (application.covered? ? 'green' : 'yellow') if application.personaled?
   end
 
   def screening_color(application)
