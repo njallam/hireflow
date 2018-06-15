@@ -7,7 +7,7 @@
         - @action.each do |application|
           = render application
       - else
-        .card-body
+        .card-body.text-light
           %p.card-text No applications.
     %hr
     %h4 Waiting
@@ -16,7 +16,7 @@
         - @waiting.each do |application|
           = render application
       - else
-        .card-body
+        .card-body.text-light
           %p.card-text No applications.
     %hr
     %h4 Completed
@@ -25,5 +25,5 @@
         - @completed.each do |application|
           = render application
       - else
-        .card-body
+        .card-body.text-light
           %p.card-text No applications.
