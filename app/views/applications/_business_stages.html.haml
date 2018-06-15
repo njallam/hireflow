@@ -35,7 +35,7 @@
         - else
           = simple_form_for application, url: application_path do |f|
             = f.error_notification
-            = f.input :offer
+            = f.input :offer, label: false
             = f.button :submit, 'Send', class: 'btn btn-success'
 - if application.accepted?
   .card.my-4
