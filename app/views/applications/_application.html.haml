@@ -30,6 +30,6 @@
         - if application.interview?
           %span.btn.step-2{ class: interview_color(application) }
             = icon 'fas', 'building', class: 'fa-3x'
-        - if application.accepted?
+        - if application.interviewed?
           %span.btn.step-2.mr-0{ class: accepted_color(application) }
             = icon 'fas', 'handshake', class: 'fa-3x'

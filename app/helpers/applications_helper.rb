@@ -26,10 +26,13 @@ module ApplicationsHelper
   end
 
   def accepted_color(application)
+    return unless application.interviewed?
     if application.accepted?
       'green'
     elsif application.screened? && application.rejected?
       'red'
+    else
+      'yellow'
     end
   end
 end
