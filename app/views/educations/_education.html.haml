@@ -1,7 +1,7 @@
 .card.my-2
   .card-body
     %p.card-title.font-weight-bold.my-0= education.place
-    %p.card-title.my-0= education.field
+    %p.card-title.my-0= education.level
     %p.text-muted #{education.start_date.strftime('%b %Y')} &ndash; #{education.end_date.strftime('%b %Y')} &bullet; for #{distance_of_time_in_words education.start_date, education.end_date}
     .list-group.list-group-flush
       = render partial: 'subjects/subject', collection: education.subjects, locals: { education: education }

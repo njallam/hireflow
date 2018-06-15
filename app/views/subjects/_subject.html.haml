@@ -1,5 +1,7 @@
 .list-group-item
-  #{subject.title} - #{subject.result}
+  = subject.title
+  \-
+  %strong= subject.result
   - if params[:controller] == 'applicants'
     = link_fa_to 'edit', edit_applicant_profile_education_subject_path(education, subject)
     = link_fa_to 'trash', applicant_profile_education_subject_path(education, subject), method: :delete

@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 2018_06_14_132129) do
     t.bigint "applicant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "field"
+    t.string "level"
     t.index ["applicant_id"], name: "index_educations_on_applicant_id"
   end
 

@@ -4,12 +4,12 @@
   .col-md-3
     - if business_signed_in?
       = link_to 'Post New Job', new_job_path, class: 'btn btn-info mb-4 btn-block'
-    .card.bg-dark.text-light
+    .card.bg-light.text-light
       .card-header Your Filters
       .card-body
         = smart_listing_controls_for :jobs do
           = text_field_tag :position, '', class: 'form-control', placeholder: 'Search...', autocomplete: :off
           %button.btn.btn-info.btn-block.mt-2{ type: 'submit' } Search
   .col-md-9
-    .card.bg-dark
+    .card.bg-light
       = smart_listing_render(:jobs)
