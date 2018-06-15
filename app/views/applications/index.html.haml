@@ -2,7 +2,7 @@
 .row
   .col-md-12
     %h4 Action Required
-    .card.bg-light
+    .card.bg-dark
       - if @action.any?
         - @action.each do |application|
           = render application
@@ -11,7 +11,7 @@
           %p.card-text No applications.
     %hr
     %h4 Waiting
-    .card.bg-light
+    .card.bg-dark
       - if @waiting.any?
         - @waiting.each do |application|
           = render application
@@ -20,7 +20,7 @@
           %p.card-text No applications.
     %hr
     %h4 Completed
-    .card.bg-light
+    .card.bg-dark
       - if @completed.any?
         - @completed.each do |application|
           = render application

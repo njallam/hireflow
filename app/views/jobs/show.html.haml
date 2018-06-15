@@ -63,6 +63,6 @@
 - if business_job? @job
   %hr
   %h4.my-4 Applicants
-  .card.bg-light.mb-4
+  .card.bg-dark.mb-4
     - @job.applications.each do |application|
       = render application
