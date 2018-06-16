@@ -7,11 +7,9 @@ Rails.application.routes.draw do
   authenticated :applicant do
     root to: 'jobs#index'
   end
-
   authenticated :business do
     root to: 'jobs#index'
   end
-
   root 'welcome#index'
 
   resources :jobs do
