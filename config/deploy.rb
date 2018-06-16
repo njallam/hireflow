@@ -21,6 +21,6 @@ end
 set :linked_files, %w[config/master.key]
 set :linked_dirs, fetch(:linked_dirs, [])
   .push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets',
-        'vendor/bundle', 'public/system', 'public/uploads')
+        'vendor/bundle', 'public/system', 'public/uploads', 'storage')
 
 set :deploy_to, "/var/www/#{fetch(:application)}"
