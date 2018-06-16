@@ -8,8 +8,11 @@
       .card-header Your Filters
       .card-body
         = smart_listing_controls_for :jobs do
-          = text_field_tag :position, '', class: 'form-control', placeholder: 'Search...', autocomplete: :off
+          = label_tag :position, 'Position'
+          = text_field_tag :position, '', class: 'form-control', placeholder: 'Frontend Developer', autocomplete: :off
+          = label_tag :salary, 'Minimum Salary'
+          = number_field_tag :salary, nil, in: 0..50_000, step: 1_000, placeholder: 20_000, class: 'form-control'
           %button.btn.btn-info.btn-block.mt-2{ type: 'submit' } Search
   .col-md-9
     .card.bg-dark
-      = smart_listing_render(:jobs)
+      = smart_listing_render :jobs

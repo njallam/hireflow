@@ -5,10 +5,13 @@ class JobsController < ApplicationController
 
   helper_method :business_job?
 
+  # This method smells of :reek:TooManyStatements
   def index
     position = params[:position]
+    salary = params[:salary]
     jobs_scope = Job.open
     jobs_scope = jobs_scope.position(position) if position
+    jobs_scope = jobs_scope.salary(salary) if salary && salary != '0'
     @jobs = smart_listing_create :jobs, jobs_scope, partial: 'jobs/list'
     # @business_jobs = Job.where business: current_business
   end

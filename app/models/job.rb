@@ -7,6 +7,7 @@ class Job < ApplicationRecord
   validates_associated :business
 
   scope :open, -> { where 'deadline > ? OR deadline IS NULL', Time.zone.now }
+  scope :salary, ->(max) { where('salary >= ?', max) }
   scope :position, ->(search) { where('position ILIKE ?', "%#{search}%") }
 
   def title
