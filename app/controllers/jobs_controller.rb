@@ -5,16 +5,22 @@ class JobsController < ApplicationController
 
   helper_method :business_job?
 
-  # This method smells of :reek:TooManyStatements
+  # This method smells of :reek:TooManyStatements :reek:NilCheck
+  # rubocop:disable Metrics/AbcSize
   def index
     position = params[:position]
     salary = params[:salary]
+    starting = params[:starting]
+    ending = params[:ending]
     jobs_scope = Job.open
-    jobs_scope = jobs_scope.position(position) if position
-    jobs_scope = jobs_scope.salary(salary) if salary && salary != '0'
+    jobs_scope = jobs_scope.position(position) if position.present?
+    jobs_scope = jobs_scope.salary(salary) if salary&.to_i&.positive?
+    jobs_scope = jobs_scope.starting(starting) if starting.present?
+    jobs_scope = jobs_scope.ending(ending) if ending.present?
     @jobs = smart_listing_create :jobs, jobs_scope, partial: 'jobs/list'
     # @business_jobs = Job.where business: current_business
   end
+  # rubocop:enable Metrics/AbcSize
 
   def show
     @application = Application.find_by job: @job, applicant: current_applicant

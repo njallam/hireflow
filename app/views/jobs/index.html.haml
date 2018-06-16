@@ -9,9 +9,13 @@
       .card-body
         = smart_listing_controls_for :jobs do
           = label_tag :position, 'Position'
-          = text_field_tag :position, '', class: 'form-control', placeholder: 'Frontend Developer', autocomplete: :off
+          = text_field_tag :position, '', placeholder: 'Frontend Developer', class: 'form-control', autocomplete: :off
           = label_tag :salary, 'Minimum Salary'
           = number_field_tag :salary, nil, in: 0..50_000, step: 1_000, placeholder: 20_000, class: 'form-control'
+          = label_tag :starting, 'Starting After'
+          = date_field_tag :starting, '', class: 'form-control'
+          = label_tag :ending, 'Ending Before'
+          = date_field_tag :ending, '', class: 'form-control'
           %button.btn.btn-info.btn-block.mt-2{ type: 'submit' } Search
   .col-md-9
     .card.bg-dark

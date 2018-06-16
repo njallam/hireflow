@@ -9,5 +9,16 @@
           = image_tag 'shards.svg', class: 'img', style: 'height: 100%'
       .col-md-10.flex-col
         %h5.my-0= job.position
-        %p.my-0= job.business.name
-        %p.my-0.text-muted= job.created_at.strftime('%d/%m/%Y')
+        %p.my-0
+          = job.business.name
+          - if job.salary
+            &mdash; (approx. £#{job.salary} p.a.)
+        %p.my-0.text-muted
+          - if job.start_date
+            - if job.end_date
+              #{job.start_date.strftime('%d/%m/%Y')} &ndash; #{job.end_date.strftime('%d/%m/%Y')}
+            - else
+              Starting #{job.start_date.strftime('%d/%m/%Y')}
+          - elsif job.end_date
+            Ending #{job.end_date.strftime('%d/%m/%Y')}
+          (Posted: #{job.created_at.strftime('%d/%m/%Y')})
