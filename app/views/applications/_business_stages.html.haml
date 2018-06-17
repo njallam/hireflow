@@ -1,33 +1,34 @@
 - if application.screening? && !application.rejected?
   .card.my-4
-    .card-header
+    .card-header.bg-dark.text-white
       Screening
     .card-body
+      %p Please review #{application.applicant.name}'s application. If you would like to advance the application to interview stage, add any additional information below regarding the interview before doing so.
       = simple_form_for application, url: application_path do |f|
         = f.error_notification
         = f.input :interview_message
-        = f.button :submit, 'Send', class: 'btn btn-success'
+        = f.button :submit, 'Advance Application to Interview', class: 'btn btn-success'
         = link_to 'Reject', reject_application_path, method: :patch, class: 'btn btn-danger'
 - if application.interview? && !application.rejected?
   .card.my-4
-    .card-header
+    .card-header.bg-dark.text-white
       Interview
     .card-body
       = application.interview_message
     .card-footer
-      = link_to 'Proceed', accept_application_path, method: :patch, class: 'btn btn-success'
-      = link_to 'Reject', reject_application_path, method: :patch, class: 'btn btn-danger'
+      = link_to 'Accept Application', accept_application_path, method: :patch, class: 'btn btn-success'
+      = link_to 'Reject Application', reject_application_path, method: :patch, class: 'btn btn-danger'
 - if application.offer?
   - if application.rejected?
     .card.my-4
-      .card-header
+      .card-header.bg-dark.text-white
         Offer
       .card-body
         %p= application.offer
         %p #{application.applicant.name} has rejected this offer.
   - else
     .card.my-4
-      .card-header
+      .card-header.bg-dark.text-white
         Offer
       .card-body
         - if application.offer
@@ -39,19 +40,19 @@
             = f.button :submit, 'Send', class: 'btn btn-success'
 - if application.accepted?
   .card.my-4
-    .card-header
+    .card-header.bg-dark.text-white
       Offer
     .card-body
       %p You have accepted #{application.applicant.name} for this position.
-- if application.personaled?
-  .card.my-4
-    .card-header
-      Applicant Information
-    .card-body
-      = render application.applicant
 - if application.covered?
   .card.my-4
-    .card-header
+    .card-header.bg-dark.text-white
       Cover Letter
     .card-body
       %p= application.cover_letter
+- if application.personaled?
+  .card.my-4
+    .card-header.bg-dark.text-white
+      Applicant Information
+    .card-body
+      = render application.applicant
