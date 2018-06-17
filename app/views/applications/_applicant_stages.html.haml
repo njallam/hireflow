@@ -1,19 +1,19 @@
 - if application.screening? && !application.rejected?
   .card.my-4
-    .card-header
+    .card-header.bg-dark.text-white
       Screening
     .card-body
       %p Please wait for the business to screen your application.
 - if application.interview? && !application.rejected?
   .card.my-4
-    .card-header
+    .card-header.bg-dark.text-white
       Interview
     .card-body
       %p= application.interview_message
 - if application.offer?
   - if application.rejected?
     .card.my-4
-      .card-header
+      .card-header.bg-dark.text-white
         Offer
       .card-body
         = application.offer
@@ -21,7 +21,7 @@
         You have rejected this offer.
   - else
     .card.my-4
-      .card-header
+      .card-header.bg-dark.text-white
         Offer
       .card-body
         = application.offer
@@ -31,7 +31,7 @@
           = link_to 'Reject Offer', reject_application_path, method: :patch, class: 'btn btn-danger'
 - if application.accepted?
   .card
-    .card-header
+    .card-header.bg-dark.text-white
       Offer
     .card-body
       = application.offer
@@ -39,7 +39,7 @@
       You've been accepted for this position.
 - if application.cover? || application.covered?
   .card.my-4
-    .card-header
+    .card-header.bg-dark.text-white
       Cover Letter
     .card-body
       - if application.cover?
@@ -55,7 +55,7 @@
         %p= application.cover_letter
 - if application.personal? || application.personaled?
   .card.my-4
-    .card-header
+    .card-header.bg-dark.text-white
       Personal Information
     .card-body
       = render application.applicant
