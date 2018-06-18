@@ -25,6 +25,7 @@
         Offer
       .card-body
         %p= application.offer
+        %hr
         %p #{application.applicant.name} has rejected this offer.
   - else
     .card.my-4
@@ -46,6 +47,7 @@
       Offer
     .card-body
       %p You have accepted #{application.applicant.name} for this position and #{application.applicant.name} has accepted your offer.
+      %hr
       %strong Please send them a formal offer to their listed email address:
       %p= application.applicant.email
 - if application.covered?
