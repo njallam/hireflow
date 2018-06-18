@@ -6,5 +6,10 @@
     = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
     = f.input :password_confirmation, required: true
   .form-actions
+    .form-check.pb-3
+      %input.form-check-input#valid{ type: 'checkbox', value: '' }
+      %label.form-check-label{ for: 'valid' }
+        I confirm that I will have the right to work in the UK at the time of employment at any job or internship I apply for
+        %a{ href: 'https://www.gov.uk/check-job-applicant-right-to-work' } (find out more)
     = f.button :submit, 'Sign up'
 = render 'devise/shared/links'

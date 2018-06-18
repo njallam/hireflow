@@ -6,7 +6,7 @@
     .steps-step-2
       %span.btn.step-2.ml-0{ class: cover_color(application) }
         = icon 'fas', 'edit', class: 'fa-3x'
-    - if applicant_signed_in? && application.job.test
+    - if applicant_signed_in? && application.job.test?
       .steps-step-2
         %span.btn.step-2.ml-0{ class: cover_color(application) }
           = icon 'fas', 'file-alt', class: 'fa-3x'

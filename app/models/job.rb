@@ -16,6 +16,10 @@ class Job < ApplicationRecord
     "#{position} at #{business.name}"
   end
 
+  def test?
+    !test.to_s.empty?
+  end
+
   def closed?
     return false unless deadline
     deadline.past?

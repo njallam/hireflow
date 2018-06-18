@@ -40,16 +40,16 @@
 - if application.cover? || application.covered?
   .card.my-4
     .card-header.bg-dark.text-white
-      - if application.job.test
+      - if application.job.test?
         Cover Letter and Test
       - else
         Cover Letter
     .card-body
       - if application.cover?
-        - if application.job.test
+        - if application.job.test?
           #{application.job.business.name} have provided you with a link to a test you must complete before submitting your cover letter:
           %br
-          %a{ href: application.job.test }= application.job.test
+          %a{ href: application.job.test? }= application.job.test?
           %br
           %hr
         - if application.job.questions

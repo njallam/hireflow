@@ -21,7 +21,7 @@ module ApplicationsHelper
     if application.interviewed?
       'green'
     else
-      application.rejected? ? 'green' : 'yellow'
+      application.rejected? ? 'red' : 'yellow'
     end
   end
 
