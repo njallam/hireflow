@@ -40,9 +40,18 @@
 - if application.cover? || application.covered?
   .card.my-4
     .card-header.bg-dark.text-white
-      Cover Letter
+      - if application.job.test
+        Cover Letter and Test
+      - else
+        Cover Letter
     .card-body
       - if application.cover?
+        - if application.job.test
+          #{application.job.business.name} have provided you with a link to a test you must complete before submitting your cover letter:
+          %br
+          %a{ href: application.job.test }= application.job.test
+          %br
+          %br
         - if application.job.questions
           #{application.job.business.name} suggests you answer the following questions:
           %p= application.job.questions
@@ -52,6 +61,9 @@
           = f.button :submit, 'Save'
           = f.button :submit, 'Submit', class: 'btn-info'
       - else
+        - if application.job.questions
+          #{application.job.business.name} suggests you answer the following questions:
+          %p= application.job.questions
         %p= application.cover_letter
 - if application.personal? || application.personaled?
   .card.my-4

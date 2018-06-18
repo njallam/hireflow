@@ -16,8 +16,8 @@
     .card-body
       = application.interview_message
     .card-footer
-      = link_to 'Accept Application', accept_application_path, method: :patch, class: 'btn btn-success'
-      = link_to 'Reject Application', reject_application_path, method: :patch, class: 'btn btn-danger'
+      = link_to 'Accept Application after Interview', accept_application_path, method: :patch, class: 'btn btn-success'
+      = link_to 'Reject Application after Interview', reject_application_path, method: :patch, class: 'btn btn-danger'
 - if application.offer?
   - if application.rejected?
     .card.my-4
@@ -32,8 +32,10 @@
         Offer
       .card-body
         - if application.offer
+          %p You have offered #{application.applicant.name}:
           = application.offer
         - else
+          %p Please enter a summary of the offer you would like to send to #{application.applicant.name}:
           = simple_form_for application, url: application_path do |f|
             = f.error_notification
             = f.input :offer, label: false
@@ -43,7 +45,9 @@
     .card-header.bg-dark.text-white
       Offer
     .card-body
-      %p You have accepted #{application.applicant.name} for this position.
+      %p You have accepted #{application.applicant.name} for this position and #{application.applicant.name} has accepted your offer.
+      %strong Please send them a formal offer to their listed email address:
+      %p= application.applicant.email
 - if application.covered?
   .card.my-4
     .card-header.bg-dark.text-white
@@ -56,3 +60,9 @@
       Applicant Information
     .card-body
       = render application.applicant
+- if application.personal?
+  .card.my-4
+    .card-header.bg-dark.text-white
+      Applicant Information
+    .card-body
+      %p #{application.applicant.name} has applied for this position! Please wait for them to provide you with more details.

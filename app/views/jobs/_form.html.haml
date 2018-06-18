@@ -2,9 +2,10 @@
   = f.error_notification
   = f.input :position
   = f.input :description
+  = f.input :test, label: 'Link to Test (optional)'
   = f.input :salary, input_html: { min: '0', step: '500' }, label: 'Annual Salary'
   = f.input :start_date, html5: true, include_blank: true
   = f.input :end_date, html5: true, include_blank: true
   = f.input :deadline, html5: true, include_blank: true
-  = f.input :questions, labe: 'Questions for cover letter'
+  = f.input :questions, label: 'Questions for cover letter'
   = f.button :submit, class: 'btn btn-success'
