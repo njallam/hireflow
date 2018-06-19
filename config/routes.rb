@@ -37,5 +37,9 @@ Rails.application.routes.draw do
     resource :profile, controller: 'businesses', as: 'business_profile', only: %i[edit update]
   end
 
-  match '*path', to: redirect('/'), via: :all unless Rails.env.development?
+  unless Rails.env.development?
+    match '*path', to: redirect('/'), via: :all, constraints: lambda { |req|
+      req.path.exclude? 'rails/active_storage'
+    }
+  end
 end
