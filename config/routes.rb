@@ -36,4 +36,6 @@ Rails.application.routes.draw do
   scope :business do
     resource :profile, controller: 'businesses', as: 'business_profile', only: %i[edit update]
   end
+
+  match '*path', to: redirect('/'), via: :all unless Rails.env.development?
 end
